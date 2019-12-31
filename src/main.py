@@ -12,7 +12,6 @@ args = parser.parse_args()
 DATA_FNAME = args.data
 
 if __name__ == '__main__':
-    f = open(DATA_FNAME, 'r')
-    parse_data(f)
+    data_dict = parse_data(DATA_FNAME)
 
-    kUI_idx = get_kui_index()
+    kUI_idx = get_kui_index(data_dict)
