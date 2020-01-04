@@ -1,6 +1,10 @@
 import argparse
+import mock_data
 from data_parser import parse_data
-from kui_index import get_kui_index
+from kui_index import get_kui_index_and_arc
+from ARC import get_arc
+
+DEBUG_MODE = False
 
 # Adding argument parser.
 parser = argparse.ArgumentParser()
@@ -12,6 +16,20 @@ args = parser.parse_args()
 DATA_FNAME = args.data
 
 if __name__ == '__main__':
-    data_dict = parse_data(DATA_FNAME)
+    if DEBUG_MODE:
+        data_dict = mock_data.DATA_DICT
+    else:
+        data_dict = parse_data(DATA_FNAME)
+    print ('Data dictionary formed...')
 
-    kUI_idx = get_kui_index(data_dict)
+    if DEBUG_MODE:
+        kUI_idx = mock_data.KUI_IDX
+        arc = mock_data.ARC
+    else:
+        (kUI_idx, arc) = get_kui_index_and_arc(data_dict)
+    print('Done kUI Index and ARC...')
+
+    print('KUI INDEX->')
+    print(kUI_idx)
+    print('ARC->')
+    print(arc)
