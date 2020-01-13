@@ -3,8 +3,10 @@ import mock_data
 from data_parser import parse_data
 from kui_index import get_kui_index_and_arc
 from ARC import get_arc
+from slots import get_slots
+from PRIP import PRIP
 
-DEBUG_MODE = False
+DEBUG_MODE = True
 
 # Adding argument parser.
 parser = argparse.ArgumentParser()
@@ -29,7 +31,17 @@ if __name__ == '__main__':
         (kUI_idx, arc) = get_kui_index_and_arc(data_dict)
     print('Done kUI Index and ARC...')
 
+    num_slots = sum([len(k) for k in data_dict.keys()])
+    type_slots = 4
+    zipf = 0.7
+
+    slots = get_slots(num_slots, type_slots, zipf)
+
+    slots = PRIP(data_dict, kUI_idx, arc, slots)
+
     print('KUI INDEX->')
     print(kUI_idx)
     print('ARC->')
     print(arc)
+    print('slots->')
+    print(slots)
