@@ -1,23 +1,19 @@
 K_FOR_KUI_IDX = 4
 
-def get_kui_index_and_arc(data):
+def get_kui_index(data):
     '''
     data - dictionary input for data.
         key -> tuple of itemsets
         value -> tuple of (support, price)
     '''
     kui = {}
-    arc = {}
+    
     # Initialize all levels for dict
     for i in range(1, K_FOR_KUI_IDX+1):
         kui[i] = []
     
     # Insert all itemsets in kui
     for itemset in data.keys():
-        for item in itemset:
-            if item not in arc:
-                arc[item] = (data[itemset][0] * data[itemset][1]) / len(itemset)
-            arc[item] += (data[itemset][0] * data[itemset][1]) / len(itemset)
         value = list([itemset]) + list(data[itemset]) + [data[itemset][0] * data[itemset][1]]
         level = len(itemset)
         if (len(itemset) > K_FOR_KUI_IDX):
@@ -30,4 +26,4 @@ def get_kui_index_and_arc(data):
         else:
             kui[level].append(tuple(value))
 
-    return (kui, arc)
+    return kui

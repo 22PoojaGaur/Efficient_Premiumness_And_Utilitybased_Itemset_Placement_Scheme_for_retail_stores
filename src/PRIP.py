@@ -34,14 +34,20 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
     arc_sorted = {k: v for k, v in sorted(arc.items(), key=lambda item: item[1])}
 
     for (item, price) in arc_sorted.items():
-        if Y[s_type] != 0:
-            slots[s_type].append((item,))
-            item_placed += 1
-            Y[s_type] -= 1
-        if(Y[s_type] == 0):
-            s_type += 1
-        if s_type == num_slots:
-            break
+        placed = False
+        while not placed:
+            if Y[s_type] != 0:
+                slots[s_type].append((item,))
+                item_placed += 1
+                Y[s_type] -= 1
+                placed = True
+            if(Y[s_type] == 0):
+                s_type += 1
+            if s_type == num_slots:
+                break
+
+    print ('SLOTS')
+    print (slots)
 
     # Scan kUI Index to fill remaining slots
     h = []

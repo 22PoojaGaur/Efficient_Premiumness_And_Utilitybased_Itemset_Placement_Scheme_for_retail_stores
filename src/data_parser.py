@@ -9,7 +9,7 @@ import math
 import random
 
 # Set a very low threshold to get all itemsets
-SUPPORT_THRESH = 100
+SUPPORT_THRESH = 50
 K_FOR_KUI_IDX = 4
 
 PRICE_BRACKETS = [
