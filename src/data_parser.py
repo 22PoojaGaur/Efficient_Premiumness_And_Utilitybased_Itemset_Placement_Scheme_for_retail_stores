@@ -7,9 +7,10 @@ value -> (support, price)
 import pyfpgrowth
 import math
 import random
+from collections import OrderedDict
 
 # Set a very low threshold to get all itemsets
-SUPPORT_THRESH = 50
+SUPPORT_THRESH = 20
 K_FOR_KUI_IDX = 4
 
 PRICE_BRACKETS = [
@@ -31,7 +32,7 @@ def parse_data(data_file_name):
 
     patterns = pyfpgrowth.find_frequent_patterns(transactions, SUPPORT_THRESH)
 
-    data = {}
+    data = OrderedDict()
     # print (patterns)
     for (itemset, support) in patterns.items():
         if len(itemset) > K_FOR_KUI_IDX:

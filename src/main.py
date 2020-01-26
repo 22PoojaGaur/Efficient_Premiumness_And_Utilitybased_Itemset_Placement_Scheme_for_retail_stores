@@ -6,9 +6,11 @@ from ARC import get_arc
 from slots import get_slots
 from PRIP import PRIP
 
-import cPickle as pkl
+import _pickle as pkl
 import time
 from os import path
+import itertools
+from random import random
 
 DEBUG_MODE = False
 
@@ -28,10 +30,17 @@ if __name__ == '__main__':
         data_dict = pkl.load(open('../data/retail_data_dict.pkl', 'rb'))
     else:
         data_dict = parse_data(DATA_FNAME)
+        # shuffling dict
+        shuffled_key_value_list = sorted(data_dict.items(), key=lambda x: random())
+        data_dict = dict(shuffled_key_value_list)
+
     print ('Data dictionary formed...')
 
     print ('storing data dict for retail.txt in pickled dictionary')
     pkl.dump(data_dict, open('../data/retail_data_dict.pkl', 'wb'))
+
+    # slice dictionary
+    data_dict = dict(itertools.islice(data_dict.items(), 40000))
 
     if DEBUG_MODE:
         kUI_idx = mock_data.KUI_IDX
@@ -41,7 +50,7 @@ if __name__ == '__main__':
     print('Done kUI Index and ARC...')
 
     num_slots = sum([len(k) for k in data_dict.keys()])
-    type_slots = 24
+    type_slots = 3
     zipf = 0.7
 
     start = time.time()
@@ -53,7 +62,7 @@ if __name__ == '__main__':
     print ('TIME -> ')
     print (end - start)
 
-    output = open('prip_slots_24.pkl', 'wb')
+    output = open('prip_slots_4.pkl', 'wb')
     pkl.dump(slots, output)
     output.close()
 
