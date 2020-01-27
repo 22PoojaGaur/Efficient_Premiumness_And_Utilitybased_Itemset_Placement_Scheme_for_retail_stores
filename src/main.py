@@ -6,7 +6,7 @@ from ARC import get_arc
 from slots import get_slots
 from PRIP import PRIP
 
-import cPickle as pkl
+import _pickle as pkl
 import time
 from os import path
 
