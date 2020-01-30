@@ -2,16 +2,17 @@
 # x -> y
 # num_slots -> ET
 
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-# x = [27182, 54302, 81411, 108521, 122131]
-# y = [0.0740, 0.1723, 0.2653, 0.2956, 0.3728]
+x = [27182, 54302, 81411, 108521, 122131]
+y = [6.0740, 6.1723, 6.2653, 6.2956, 6.3728]
 
-# plt.plot(x,y)
-# plt.xlabel('num_slots')
-# plt.ylabel('ET')
-# plt.title('Graph for Execution time vs Number of slots')
-# plt.show()
+plt.plot(x,y)
+plt.yticks([5,6,7])
+plt.xlabel('num_slots')
+plt.ylabel('ET')
+plt.title('Graph for Execution time vs Number of slots')
+plt.show()
 #-----------------------------------------------------------------------------------------------------------------
 
 # graph for Number of patterns vs number of slots (y vs x)
@@ -54,9 +55,10 @@
 # import matplotlib.pyplot as plt
 
 # x = [3,6,9,12,15,18]
-# y = [0.3980, 0.3770, 0.3285, 0.3622, 0.3283, 0.3596]
+# y = [6.3980, 6.3770, 6.3285, 6.3622, 6.3283, 6.3596]
 
 # plt.plot(x,y)
+# plt.yticks([5,6,7])
 # plt.xlabel('slot_types')
 # plt.ylabel('ET')
 # plt.title('Graph for Execution time vs Slot Types')
@@ -83,13 +85,14 @@
 # graph for ET vs zipf factor (y vs x)
 # zipf factor -> ET
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
-x = [0.124, 0.138, 0.230, 0.304, 0.469]
-y = [0.1210, 0.1204, 0.1144, 0.1272, 0.1141]
+# x = [0.124, 0.138, 0.230, 0.304, 0.469]
+# y = [6.1210, 6.1204, 6.1144, 6.1272, 6.1141]
 
-plt.plot(x,y)
-plt.xlabel('zipf factor')
-plt.ylabel('ET')
-plt.title('Graph for ET vs Zipf Factor')
-plt.show()
+# plt.plot(x,y)
+# plt.yticks([5,6,7])
+# plt.xlabel('zipf factor')
+# plt.ylabel('ET')
+# plt.title('Graph for ET vs Zipf Factor')
+# plt.show()
