@@ -4,7 +4,7 @@ Runs PRIP algorithm and returns slots.
 '''
 
 def PRIP(data_dict, kui_idx, arc, slot_sizes):
-    print(slot_sizes)
+    # print(slot_sizes)
     s_type = 0
     item_placed = 0
     slot_type_arr = []
@@ -29,7 +29,7 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
     for i in range(0, num_slots):
         CAS[i] -= Y[i]
 
-    print (Y)
+    # print (Y)
     # sorting ARC by value
     arc_sorted = {k: v for k, v in sorted(arc.items(), key=lambda item: item[1])}
 
@@ -46,8 +46,8 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
             if s_type == num_slots:
                 break
 
-    print ('SLOTS')
-    print (slots)
+    # print ('SLOTS')
+    # print (slots)
 
     # Scan kUI Index to fill remaining slots
     h = []
@@ -67,9 +67,9 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
                     if CAS[stype] >= lv:
                         if h[lv] >= len(kui_idx[lv]):
                             continue
-                        print('lv h[lv]')
-                        print(lv)
-                        print(h[lv])
+                        # print('lv h[lv]')
+                        # print(lv)
+                        # print(h[lv])
                         itemset = kui_idx[lv][h[lv]][0]
                         slots[stype].append(itemset)
                         h[lv] += 1

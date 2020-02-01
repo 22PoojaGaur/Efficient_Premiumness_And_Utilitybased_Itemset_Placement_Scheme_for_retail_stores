@@ -22,12 +22,17 @@ def nonblank_lines(f):
         if line:
             yield line
 
-def parse_data(data_file_name):
+def parse_data(data_file_name, dataset_name):
+
     transactions = []
     with open(data_file_name, 'r') as f:
         for line in nonblank_lines(f):
             transactions.append(line)
-    transactions = [[int(item) for item in transaction.strip().split(' ')] for transaction in transactions]
+    if dataset_name == 'retail':
+        transactions = [[int(item) for item in transaction.strip().split(' ')] for transaction in transactions]
+    elif dataset_name == 'tesco':
+        transactions = [[item for item in transaction.strip().split(';')] for transaction in transactions]
+
 
     patterns = pyfpgrowth.find_frequent_patterns(transactions, SUPPORT_THRESH)
 
@@ -43,3 +48,26 @@ def parse_data(data_file_name):
         data[itemset] = (support, price)
     
     return data
+
+def parse_ch_dict(ch_file_name):
+    item_path_dict = {}
+    is_item = True
+    cur_item = ''
+    path = []
+    fin = open(ch_file_name, 'r')
+    for line in fin.readlines():
+        path = []
+        if line.strip() == '':
+            continue
+
+        if is_item:
+            # line is item
+            item = line.strip()
+            cur_item = item
+            is_item = 0
+        else:
+            # line is path
+            path = line.strip().split(' ')
+            item_path_dict[cur_item] = path
+            is_item = 1
+    return item_path_dict
