@@ -36,43 +36,40 @@ if __name__ == '__main__':
         data_dict = parse_data(DATA_FNAME, 'tesco')
         ch_dict = parse_ch_dict(CH_FNAME)
         dranks = get_dranks(data_dict.keys(), ch_dict)
+        kui_idx = get_kui_index(data_dict, dranks=dranks, method='R')
     else:
         # run without diversity mode
         if DEBUG_MODE:
             data_dict = mock_data.DATA_DICT
+            kui_idx = mock_data
         else:
             data_dict = parse_data(DATA_FNAME, 'retail')
+            kui_idx = get_kui_index(data_dict)
+        
     
     print (data_dict)
     print (ch_dict)
     print (dranks)
+    print (kui_idx)
     
 
-    print ('storing data dict for retail.txt in pickled dictionary')
-    pkl.dump(data_dict, open('../data/retail_data_dict.pkl', 'wb'))
-
-    if DEBUG_MODE:
-        kUI_idx = mock_data.KUI_IDX
-        arc = mock_data.ARC
-    else:
-        kUI_idx = get_kui_index(data_dict)
-    print('Done kUI Index and ARC...')
-
+    # print ('storing data dict for retail.txt in pickled dictionary')
+    # pkl.dump(data_dict, open('../data/retail_data_dict.pkl', 'wb'))
 
     num_slots = sum([len(k) for k in data_dict.keys()])
-    type_slots = 24
+    type_slots = 4
     zipf = 0.7
 
     start = time.time()
     slots = get_slots(num_slots, type_slots, zipf)
     arc = get_arc(data_dict)
-    slots = PRIP(data_dict, kUI_idx, arc, slots)
+    slots = PRIP(data_dict, kui_idx, arc, slots)
     end = time.time()
 
     print ('TIME -> ')
     print (end - start)
 
-    output = open('prip_slots_24.pkl', 'wb')
+    output = open('prip_slots_%d.pkl' % type_slots, 'wb')
     pkl.dump(slots, output)
     output.close()
 
