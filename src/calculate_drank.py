@@ -41,7 +41,7 @@ def get_dranks(freq_patterns, item_path_dict):
     dranks = {}
     idx = 0
     for patterns in freq_patterns:
-        print("processing pattern %s", ' '.join(patterns), '\n')
+        # print("processing pattern %s", ' '.join(patterns), '\n')
         try:
             # calculate drank
             dranks[patterns] = calculate_drank(patterns, ch_dict=item_path_dict, ch_height=ch_height)

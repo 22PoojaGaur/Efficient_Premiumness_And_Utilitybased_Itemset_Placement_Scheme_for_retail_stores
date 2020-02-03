@@ -1,6 +1,44 @@
 K_FOR_KUI_IDX = 4
 
-def get_kui_idx_without_diversity(data):
+def _sort_by_drank(nodes):
+    return sorted(nodes, key=lambda x: x[-1], reverse=True)
+
+def _get_kui_idx_with_hybrid_approach(data, dranks):
+    '''
+    data - dictionary input for data
+    dranks - dictionary of dranks with itemset
+    '''
+    # we are using NR - alpha*NR window
+    alpha = 0.2
+
+    # first find kui by without diversity method and then apply
+    # windowed sort
+    kui = _get_kui_idx_with_diversity(data, dranks, 'R')
+
+    for i in kui.keys():
+        # not applying this sorting for single itemset
+        if i == 1:
+            continue
+
+        j = 0
+        kui_level = []
+        while j < len(kui[i]):
+            window = [kui[i][j][-2], kui[i][j][-2] - alpha*kui[i][j][-2]]
+
+            to_sort = []
+            # add all elements in window
+            while j < len(kui[i]) and kui[i][j][-2] >= window[1]:
+                to_sort.append(kui[i][j])
+                j += 1
+
+            kui_level.extend(_sort_by_drank(to_sort))
+        kui[i] = kui_level
+    return kui
+
+    
+    
+
+def _get_kui_idx_without_diversity(data):
     '''
     data - dictionary input for data.
         key -> tuple of itemsets
@@ -18,17 +56,14 @@ def get_kui_idx_without_diversity(data):
         level = len(itemset)
         if (len(itemset) > K_FOR_KUI_IDX):
             continue
-        # use insertion sort to maintain sorted order at level
-        for i in range(0, len(kui[level])):
-            if value[-1] < kui[level][i][-1]:
-                kui[level].insert(i, tuple(value))
-                break
-        else:
-            kui[level].append(tuple(value))
+        kui[level].insert(i, tuple(value))
 
+    for level in range(1, K_FOR_KUI_IDX+1):
+        sorted(kui[level], key=lambda x: x[-2], reverse=True)
+        
     return kui
 
-def get_kui_idx_with_diversity(data, dranks, method):
+def _get_kui_idx_with_diversity(data, dranks, method):
     '''
     data - dictionary input for data.
         key -> tuple of itemset
@@ -52,19 +87,13 @@ def get_kui_idx_with_diversity(data, dranks, method):
         level = len(itemset)
         if (len(itemset) > K_FOR_KUI_IDX):
             continue
-        # use insertion sort to maintain sorted order at level
-        for i in range(0, len(kui[level])):
-            if method == 'R':
-                if value[-2] < kui[level][i][-2]:
-                    kui[level].insert(i, tuple(value))
-                    break
-            elif method == 'D':
-                if value[-1] < kui[level][i][-1]:
-                    kui[level].insert(i, tuple(value))
-                    break
-        else:
-            kui[level].append(tuple(value))
+        kui[level].insert(i, tuple(value))
 
+    for level in range(1, K_FOR_KUI_IDX+1):
+        if method == 'R':
+            sorted(kui[level], key=lambda x: x[-2], reverse=True)
+        if method == 'D':
+            sorted(kui[level], key=lambda x: x[-1], reverse=True)
 
     return kui
 
@@ -72,9 +101,12 @@ def get_kui_index(data, dranks=None, method=None):
     
     if dranks is not None:
         print('CREATING KUI IDX WITH DIVERSITY')
-        kui_idx = get_kui_idx_with_diversity(data, dranks, method)
+        if method == 'D' or method == 'R':
+            kui_idx = _get_kui_idx_with_diversity(data, dranks, method)
+        elif method == 'H':
+            kui_idx = _get_kui_idx_with_hybrid_approach(data, dranks)
     else:
         print ('CREATING KUI IDX WITHOUT DIVERSITY')
-        kui_idx = get_kui_idx_without_diversity(data)
+        kui_idx = _get_kui_idx_without_diversity(data)
 
     return kui_idx
