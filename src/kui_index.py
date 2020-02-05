@@ -1,4 +1,4 @@
-K_FOR_KUI_IDX = 4
+K_FOR_KUI_IDX = 6
 
 def _sort_by_drank(nodes):
     return sorted(nodes, key=lambda x: x[-1], reverse=True)

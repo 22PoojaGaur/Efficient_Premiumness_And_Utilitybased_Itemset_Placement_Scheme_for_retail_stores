@@ -9,7 +9,7 @@ import math
 import random
 
 # Set a very low threshold to get all itemsets
-SUPPORT_THRESH = 50
+SUPPORT_THRESH = 1
 K_FOR_KUI_IDX = 4
 
 PRICE_BRACKETS = [
@@ -24,6 +24,8 @@ def nonblank_lines(f):
 
 def parse_data(data_file_name, dataset_name):
 
+    total_items = set()
+
     transactions = []
     with open(data_file_name, 'r') as f:
         for line in nonblank_lines(f):
@@ -33,12 +35,16 @@ def parse_data(data_file_name, dataset_name):
     elif dataset_name == 'tesco':
         transactions = [[item for item in transaction.strip().split(';')] for transaction in transactions]
 
+    for transaction in transactions:
+        for item in transaction:    
+            total_items.add(item)
 
     patterns = pyfpgrowth.find_frequent_patterns(transactions, SUPPORT_THRESH)
 
     data = {}
     # print (patterns)
     for (itemset, support) in patterns.items():
+        
         if len(itemset) > K_FOR_KUI_IDX:
             continue
         price_idx = int(math.floor(5.5*random.random()))
@@ -46,6 +52,8 @@ def parse_data(data_file_name, dataset_name):
             int(100*PRICE_BRACKETS[price_idx][0]), int(100*PRICE_BRACKETS[price_idx][1]))/100.0
 
         data[itemset] = (support, price)
+    print(total_items)
+    print (len(total_items))
     
     return data
 

@@ -1,5 +1,6 @@
 import argparse
 import mock_data
+import itertools
 from data_parser import parse_data
 from data_parser import parse_ch_dict
 from calculate_drank import get_dranks
@@ -39,7 +40,7 @@ if __name__ == '__main__':
         ch_dict = parse_ch_dict(CH_FNAME)
         dranks = get_dranks(data_dict.keys(), ch_dict)
         # kui_idx = get_kui_index(data_dict, dranks=dranks, method='R')
-        kui_idx = get_kui_index(data_dict, dranks=dranks, method='R')
+        kui_idx = get_kui_index(data_dict, dranks=dranks, method='H')
     else:
         # run without diversity mode
         if DEBUG_MODE:
@@ -58,8 +59,10 @@ if __name__ == '__main__':
     # print (dranks)
     # print (kui_idx)
 
+    print(len(data_dict))
+
     # to modify number of slots vary the number (second argument) below
-    # data_dict = dict(itertools.islice(data_dict.items(), 1900))
+    data_dict = dict(itertools.islice(data_dict.items(), 10000))
     
     num_slots = sum([len(k) for k in data_dict.keys()])
     type_slots = 4
@@ -82,7 +85,13 @@ if __name__ == '__main__':
     output.close()
 
     #print('KUI INDEX->')
-    #print(kUI_idx)
+    print (kui_idx[1])
+    print(len(kui_idx[1]))
+    print(len(kui_idx[2]))
+    print (len(kui_idx[3]))
+    print (len(kui_idx[4]))
+    print(len(kui_idx[5]))
+    print (len(kui_idx[6]))
     #print('ARC->')
     #print(arc)
     # print('slots->')
