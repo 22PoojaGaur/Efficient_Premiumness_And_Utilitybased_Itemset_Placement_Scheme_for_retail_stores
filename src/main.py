@@ -77,7 +77,7 @@ if __name__ == '__main__':
     #print('KUI INDEX->')
     # print (kui_idx[1])
     # print(len(kui_idx[1]))
-    # print(len(kui_idx[2]))
+    # print(kui_idx[2])
     # print (len(kui_idx[3]))
     # print (len(kui_idx[4]))
     # print(len(kui_idx[5]))

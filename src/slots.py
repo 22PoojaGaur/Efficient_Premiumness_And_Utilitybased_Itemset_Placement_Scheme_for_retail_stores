@@ -15,7 +15,7 @@ def get_slots(num_slots, type_slots, zipf):
     '''
     slots = []
     for i in range(0, type_slots):
-        slots[i] = []
+        slots.append([])
         for _ in range(0, num_slots[i]):
             slots[i].append(0)
     

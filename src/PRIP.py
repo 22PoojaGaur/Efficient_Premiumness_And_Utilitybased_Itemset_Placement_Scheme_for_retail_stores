@@ -24,20 +24,20 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
         SLOT_WISE_REVENUE[i] = 0
     total_slots = 0
     slots = []
-    for i in range(0, num_slots):
+    for i in range(0, num_type_slots):
         CAS.append(len(slot_sizes[i]))
         total_slots += len(slot_sizes[i])
         slots.append([])
     
     # placing 1 itemsets
     Y = []
-    for i in range(0, num_slots):
+    for i in range(0, num_type_slots):
         Y.append(int((len(slot_sizes[i])/float(total_slots))*len(arc.keys())))
     else:
-        Y[num_slots-1] += len(arc.keys()) - sum(Y)
+        Y[num_type_slots-1] += len(arc.keys()) - sum(Y)
 
     # Adjusting CAS
-    for i in range(0, num_slots):
+    for i in range(0, num_type_slots):
         CAS[i] -= Y[i]
 
     for (item, price) in arc.items():
@@ -51,7 +51,7 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
                 placed = True
             if(Y[s_type] == 0):
                 s_type += 1
-            if s_type == num_slots:
+            if s_type == num_type_slots:
                 break
 
 
@@ -62,7 +62,7 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
     stype = 0
     can_place_more = True
     
-    while stype < num_slots:
+    while stype < num_type_slots:
         
         for lv in range(2, len(kui_idx.keys())+1):
             #print('.', end='')
@@ -94,7 +94,7 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
                         slots[stype].append(itemset)
                         ITEMS_PLACED += len(itemset)
                         SLOT_WISE_REVENUE[stype] += kui_idx[ilv][h[ilv]][-1]
-                        TOTAL_REVENUE += kui_idx[ilv][h[ilv]][-1] * (1.0 / (stype+1))
+                        TOTAL_REVENUE += kui_idx[ilv][h[ilv]][-2] * (1.0 / (stype+1))
                         h[ilv] += 1
                         CAS[stype] = CAS[stype] - ilv
                         placed = True
@@ -106,7 +106,7 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
                 slots[stype].append(itemset)
                 ITEMS_PLACED += len(itemset)
                 SLOT_WISE_REVENUE[stype] += kui_idx[lv][h[lv]][-1]
-                TOTAL_REVENUE += kui_idx[lv][h[lv]][-1] * (1.0/ (stype+1))
+                TOTAL_REVENUE += kui_idx[lv][h[lv]][-2] * (1.0/ (stype+1))
                 h[lv] += 1
                 CAS[stype] = CAS[stype] - lv
         if can_place_more == False:
