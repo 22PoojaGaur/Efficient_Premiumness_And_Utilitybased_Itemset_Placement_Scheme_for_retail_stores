@@ -9,6 +9,7 @@ from ARC import get_arc
 from slots import get_slots
 from PRIP import PRIP
 from DPRIP import DPRIP
+import globals
 
 import _pickle as pkl
 import time
@@ -49,27 +50,16 @@ if __name__ == '__main__':
         else:
             data_dict = parse_data(DATA_FNAME, 'retail')
             kui_idx = get_kui_index(data_dict)
-    # shuffling dict
-    shuffled_key_value_list = sorted(data_dict.items(), key=lambda x: random())
-    data_dict = dict(shuffled_key_value_list)
-        
-    
-    # print (data_dict)
-    # print (ch_dict)
-    # print (dranks)
-    # print (kui_idx)
-
-    print(len(data_dict))
-
-    # to modify number of slots vary the number (second argument) below
-    data_dict = dict(itertools.islice(data_dict.items(), 10000))
-    
-    num_slots = sum([len(k) for k in data_dict.keys()])
-    type_slots = 4
-    zipf = 0.7
+     
+    # num_slots gives number of slot in each slot type
+    num_slots = globals.NUM_SLOTS
+    type_slots = globals.NUM_TYPE_SLOTS
+    zipf = globals.ZIPF
 
     start = time.time()
+    # get empty slots
     slots = get_slots(num_slots, type_slots, zipf)
+    # get sorted arc
     arc = get_arc(data_dict)
     if CH_FNAME is not None:
         slots = DPRIP(data_dict, kui_idx, dranks, arc, slots)
@@ -85,13 +75,13 @@ if __name__ == '__main__':
     output.close()
 
     #print('KUI INDEX->')
-    print (kui_idx[1])
-    print(len(kui_idx[1]))
-    print(len(kui_idx[2]))
-    print (len(kui_idx[3]))
-    print (len(kui_idx[4]))
-    print(len(kui_idx[5]))
-    print (len(kui_idx[6]))
+    # print (kui_idx[1])
+    # print(len(kui_idx[1]))
+    # print(len(kui_idx[2]))
+    # print (len(kui_idx[3]))
+    # print (len(kui_idx[4]))
+    # print(len(kui_idx[5]))
+    # print (len(kui_idx[6]))
     #print('ARC->')
     #print(arc)
     # print('slots->')

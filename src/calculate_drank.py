@@ -31,22 +31,22 @@ def calculate_drank(patterns, ch_dict=None, ch_height=None):
 
 
 def get_dranks(freq_patterns, item_path_dict):
+    '''
+    Args -
+        freq_patterns: List. list of itemsets
+        item_path_dict: Dict. Info of CH {item -> [nodes from root to item in CH]}
+    '''
     ch_height = 0
     for item in item_path_dict.keys():
         if len(item_path_dict[item]) > ch_height:
             ch_height = len(item_path_dict[item])
 
-    # print("concept hierarchy height")
-    # print (ch_height)
     dranks = {}
-    idx = 0
     for patterns in freq_patterns:
-        # print("processing pattern %s", ' '.join(patterns), '\n')
         try:
             # calculate drank
             dranks[patterns] = calculate_drank(patterns, ch_dict=item_path_dict, ch_height=ch_height)
         except KeyboardInterrupt:
-            dranks[patterns] = "SKIPPED"
-        idx += 1
+            print('Drank calculation SKIPPED for ' + ' '.join(patterns))
 
     return dranks

@@ -4,22 +4,24 @@ Runs PRIP algorithm and returns slots.
 '''
 
 def PRIP(data_dict, kui_idx, arc, slot_sizes):
-    #print(kui_idx.keys())
+    '''
+    Args -
+        data_dict: Dict. {itemset -> (sup_count, price)}
+        kui_idx: Dict. {level -> [list of itemset sorted by utility function]}
+        slot_sizes: List[List]. Empty slots.
+    '''
     ITEMS_PLACED = 0
     TOTAL_REVENUE = 0
     SLOT_WISE_REVENUE = {}
 
-    # print(slot_sizes)
     s_type = 0
     item_placed = 0
     slot_type_arr = []
     CAS = []
 
-    num_slots = len(slot_sizes)
-    for i in range(0, num_slots):
+    num_type_slots = len(slot_sizes)
+    for i in range(0, num_type_slots):
         SLOT_WISE_REVENUE[i] = 0
-    # print('NUM_SLOTS')
-    # print(num_slots)
     total_slots = 0
     slots = []
     for i in range(0, num_slots):
@@ -38,22 +40,13 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
     for i in range(0, num_slots):
         CAS[i] -= Y[i]
 
-    # sorting ARC by value
-    arc_sorted = {k: v for k, v in sorted(arc.items(), key=lambda item: item[1])}
-
-    print('LENGTH ARC ->')
-    print(len(arc_sorted.keys()))
-    print('KUI FOR 1 LENGTH ->')
-    print(len(kui_idx[1]))
-
-    for (item, price) in arc_sorted.items():
+    for (item, price) in arc.items():
         placed = False
         while not placed:
             if Y[s_type] != 0:
                 slots[s_type].append((item,))
                 item_placed += 1
                 ITEMS_PLACED += 1
-                #TOTAL_REVENUE += kui_idx[(item,)][-1]
                 Y[s_type] -= 1
                 placed = True
             if(Y[s_type] == 0):
@@ -61,8 +54,6 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
             if s_type == num_slots:
                 break
 
-    #print ('SLOTS')
-    #print (slots)
 
     # Scan kUI Index to fill remaining slots
     h = []
@@ -83,28 +74,29 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
                 break
             # if there is not enough space to place itemset
             if CAS[stype] < lv:
+                ilv = lv
                 placed = False
                 while not placed:
-                    lv -= 1
-                    if lv <= 1 or CAS[stype] <= 0:
+                    ilv -= 1
+                    if ilv <= 1 or CAS[stype] <= 0:
                         can_place_more = False
                         break
-                    if h[lv] >= len(kui_idx[lv]):
-                        lv -= 1
+                    if h[ilv] >= len(kui_idx[lv]):
+                        ilv -= 1
                         continue
-                    if CAS[stype] >= lv:
+                    if CAS[stype] >= ilv:
                         # if h[lv] >= len(kui_idx[lv]):
                         #     continue
                         # print('lv h[lv]')
                         # print(lv)
                         # print(h[lv])
-                        itemset = kui_idx[lv][h[lv]][0]
+                        itemset = kui_idx[ilv][h[ilv]][0]
                         slots[stype].append(itemset)
                         ITEMS_PLACED += len(itemset)
-                        SLOT_WISE_REVENUE[stype] += kui_idx[lv][h[lv]][-1]
-                        TOTAL_REVENUE += kui_idx[lv][h[lv]][-1] * (1.0 / (stype+1))
-                        h[lv] += 1
-                        CAS[stype] = CAS[stype] - lv
+                        SLOT_WISE_REVENUE[stype] += kui_idx[ilv][h[ilv]][-1]
+                        TOTAL_REVENUE += kui_idx[ilv][h[ilv]][-1] * (1.0 / (stype+1))
+                        h[ilv] += 1
+                        CAS[stype] = CAS[stype] - ilv
                         placed = True
                         break
             else:

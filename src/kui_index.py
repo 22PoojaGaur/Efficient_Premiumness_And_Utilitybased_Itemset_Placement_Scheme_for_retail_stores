@@ -1,4 +1,4 @@
-K_FOR_KUI_IDX = 6
+from globals import *
 
 def _sort_by_drank(nodes):
     return sorted(nodes, key=lambda x: x[-1], reverse=True)
@@ -9,7 +9,7 @@ def _get_kui_idx_with_hybrid_approach(data, dranks):
     dranks - dictionary of dranks with itemset
     '''
     # we are using NR - alpha*NR window
-    alpha = 0.2
+    alpha = ALPHA
 
     # first find kui by without diversity method and then apply
     # windowed sort
@@ -23,6 +23,7 @@ def _get_kui_idx_with_hybrid_approach(data, dranks):
         j = 0
         kui_level = []
         while j < len(kui[i]):
+            # [NR, NR - alpha*NR]
             window = [kui[i][j][-2], kui[i][j][-2] - alpha*kui[i][j][-2]]
 
             to_sort = []
@@ -35,8 +36,6 @@ def _get_kui_idx_with_hybrid_approach(data, dranks):
         kui[i] = kui_level
     return kui
 
-    
-    
 
 def _get_kui_idx_without_diversity(data):
     '''
@@ -56,10 +55,11 @@ def _get_kui_idx_without_diversity(data):
         level = len(itemset)
         if (len(itemset) > K_FOR_KUI_IDX):
             continue
-        kui[level].insert(i, tuple(value))
+        kui[level].append(tuple(value))
 
     for level in range(1, K_FOR_KUI_IDX+1):
         sorted(kui[level], key=lambda x: x[-2], reverse=True)
+        kui[level] = kui[level][0:LAMBDA]
         
     return kui
 
@@ -85,19 +85,26 @@ def _get_kui_idx_with_diversity(data, dranks, method):
     for itemset in data.keys():
         value = list([itemset]) + list(data[itemset]) + [data[itemset][0] * data[itemset][1]] + [dranks[itemset]]
         level = len(itemset)
-        if (len(itemset) > K_FOR_KUI_IDX):
+        if level > K_FOR_KUI_IDX:
             continue
-        kui[level].insert(i, tuple(value))
+        kui[level].append(tuple(value))
 
     for level in range(1, K_FOR_KUI_IDX+1):
         if method == 'R':
-            sorted(kui[level], key=lambda x: x[-2], reverse=True)
+            kui[level] = sorted(kui[level], key=lambda x: x[-2], reverse=True)
         if method == 'D':
-            sorted(kui[level], key=lambda x: x[-1], reverse=True)
+            kui[level] = sorted(kui[level], key=lambda x: x[-1], reverse=True)
+        kui[level] = kui[level][0:LAMBDA]
 
     return kui
 
 def get_kui_index(data, dranks=None, method=None):
+    '''
+    Args -
+        data: Dict. {itemset -> (sup_count, price)}
+        dranks: Dict. {itemset -> drank}
+        method: string. 'R', 'D' or 'H'
+    '''
     
     if dranks is not None:
         print('CREATING KUI IDX WITH DIVERSITY')
