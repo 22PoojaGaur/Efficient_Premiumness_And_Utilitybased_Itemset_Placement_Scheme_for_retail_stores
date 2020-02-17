@@ -92,8 +92,12 @@ def _get_kui_idx_with_diversity(data, dranks, method):
     for level in range(1, K_FOR_KUI_IDX+1):
         if method == 'R':
             kui[level] = sorted(kui[level], key=lambda x: x[-2], reverse=True)
-        if method == 'D':
+        elif method == 'D':
             kui[level] = sorted(kui[level], key=lambda x: x[-1], reverse=True)
+        elif method == 'P':
+            kui[level] = sorted(kui[level], key=lambda x: x[-3], reverse=True)
+        elif method == 'S':
+            kui[level] = sorted(kui[level], key=lambda x: x[-4], reverse=True)
         kui[level] = kui[level][0:LAMBDA]
 
     return kui
@@ -108,7 +112,7 @@ def get_kui_index(data, dranks=None, method=None):
     
     if dranks is not None:
         print('CREATING KUI IDX WITH DIVERSITY')
-        if method == 'D' or method == 'R':
+        if method == 'D' or method == 'R' or method == 'P' or method == 'S':
             kui_idx = _get_kui_idx_with_diversity(data, dranks, method)
         elif method == 'H':
             kui_idx = _get_kui_idx_with_hybrid_approach(data, dranks)

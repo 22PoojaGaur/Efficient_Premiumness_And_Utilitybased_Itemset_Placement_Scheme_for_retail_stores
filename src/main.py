@@ -37,7 +37,11 @@ if __name__ == '__main__':
     dranks = {}
     if CH_FNAME is not None:
         # run with diversity mode
-        data_dict = parse_data(DATA_FNAME, 'tesco')
+        if path.isfile('dataset.pkl'):
+            data_dict = pkl.load(open('dataset.pkl', 'rb'))
+        else:
+            data_dict = parse_data(DATA_FNAME, 'tesco')
+            pkl.dump(data_dict, open('dataset.pkl', 'wb'))
         ch_dict = parse_ch_dict(CH_FNAME)
         dranks = get_dranks(data_dict.keys(), ch_dict)
         # kui_idx = get_kui_index(data_dict, dranks=dranks, method='R')

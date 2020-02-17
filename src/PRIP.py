@@ -40,6 +40,10 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
     for i in range(0, num_type_slots):
         CAS[i] -= Y[i]
 
+    revenue_1_itemset = {}
+    for node in kui_idx[1]:
+        revenue_1_itemset[node[1]] = node[-2]
+
     for (item, price) in arc.items():
         placed = False
         while not placed:
@@ -47,6 +51,10 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
                 slots[s_type].append((item,))
                 item_placed += 1
                 ITEMS_PLACED += 1
+                try:
+                    TOTAL_REVENUE += revenue_1_itemset[(item,)]
+                except:
+                    pass
                 Y[s_type] -= 1
                 placed = True
             if(Y[s_type] == 0):
