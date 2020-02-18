@@ -9,6 +9,7 @@ from ARC import get_arc
 from slots import get_slots
 from PRIP import PRIP
 from DPRIP import DPRIP
+from evaluate import evaluate
 import globals
 
 import _pickle as pkl
@@ -37,23 +38,25 @@ if __name__ == '__main__':
     dranks = {}
     if CH_FNAME is not None:
         # run with diversity mode
-        if path.isfile('dataset.pkl'):
-            data_dict = pkl.load(open('dataset.pkl', 'rb'))
+        if path.isfile('dataset.pkl') and path.isfile('test.pkl'):
+            train_data_dict = pkl.load(open('dataset.pkl', 'rb'))
+            test_transactions = pkl.load(open('test.pkl', 'rb'))
         else:
-            data_dict = parse_data(DATA_FNAME, 'tesco')
-            pkl.dump(data_dict, open('dataset.pkl', 'wb'))
+            (train_data_dict, test_transactions) = parse_data(DATA_FNAME, 'tesco')
+            pkl.dump(train_data_dict, open('dataset.pkl', 'wb'))
+            pkl.dump(test_transactions, open('test.pkl', 'wb'))
         ch_dict = parse_ch_dict(CH_FNAME)
-        dranks = get_dranks(data_dict.keys(), ch_dict)
+        dranks = get_dranks(train_data_dict.keys(), ch_dict)
         # kui_idx = get_kui_index(data_dict, dranks=dranks, method='R')
-        kui_idx = get_kui_index(data_dict, dranks=dranks, method='H')
+        kui_idx = get_kui_index(train_data_dict, dranks=dranks, method='R')
     else:
         # run without diversity mode
         if DEBUG_MODE:
-            data_dict = mock_data.DATA_DICT
+            train_data_dict = mock_data.DATA_DICT
             kui_idx = mock_data
         else:
-            data_dict = parse_data(DATA_FNAME, 'retail')
-            kui_idx = get_kui_index(data_dict)
+            (train_data_dict, test_transactions) = parse_data(DATA_FNAME, 'retail')
+            kui_idx = get_kui_index(train_data_dict)
      
     # num_slots gives number of slot in each slot type
     num_slots = globals.NUM_SLOTS
@@ -78,6 +81,7 @@ if __name__ == '__main__':
     pkl.dump(slots, output)
     output.close()
 
+    evaluate(slots, test_transactions)
     #print('KUI INDEX->')
     # print (kui_idx[1])
     # print(len(kui_idx[1]))

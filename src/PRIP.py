@@ -98,7 +98,7 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
                         # print('lv h[lv]')
                         # print(lv)
                         # print(h[lv])
-                        itemset = kui_idx[ilv][h[ilv]][0]
+                        itemset = tuple([kui_idx[lv][h[lv]][0], kui_idx[lv][h[lv]][-2]])
                         slots[stype].append(itemset)
                         ITEMS_PLACED += len(itemset)
                         SLOT_WISE_REVENUE[stype] += kui_idx[ilv][h[ilv]][-1]
@@ -110,7 +110,7 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
             else:
                 if h[lv] >= len(kui_idx[lv]):
                     continue
-                itemset = kui_idx[lv][h[lv]][0]
+                itemset = tuple([kui_idx[lv][h[lv]][0], kui_idx[lv][h[lv]][-2]])
                 slots[stype].append(itemset)
                 ITEMS_PLACED += len(itemset)
                 SLOT_WISE_REVENUE[stype] += kui_idx[lv][h[lv]][-1]
@@ -122,14 +122,14 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
             stype += 1
             can_place_more = True
 
-    print('ITEMS_PLACED ->')
-    print(ITEMS_PLACED)
-    print('TOTAL ITEMS ->')
-    print(sum([len(k) for k in data_dict.keys()]))
-    print('TOTAL_SLOTS ->')
-    print(total_slots)
-    print('TOTAL_REVENUE ->')
-    print(TOTAL_REVENUE)
-    print ('SLOT WISE REVENUE ->')
-    print (SLOT_WISE_REVENUE)
+    # print('ITEMS_PLACED ->')
+    # print(ITEMS_PLACED)
+    # print('TOTAL ITEMS ->')
+    # print(sum([len(k) for k in data_dict.keys()]))
+    # print('TOTAL_SLOTS ->')
+    # print(total_slots)
+    # print('TOTAL_REVENUE ->')
+    # print(TOTAL_REVENUE)
+    # print ('SLOT WISE REVENUE ->')
+    # print (SLOT_WISE_REVENUE)
     return slots
