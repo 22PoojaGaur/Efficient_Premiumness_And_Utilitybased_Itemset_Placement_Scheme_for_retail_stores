@@ -52,15 +52,37 @@ def parse_data(data_file_name, dataset_name):
         for k, v in patterns[key].items():
             mod_patterns[k] = v
     patterns = mod_patterns
+
+    prices = {}
+    for (itemset, support) in patterns.items():
+        if len(itemset) == 1:
+            price_idx = random.randint(0, len(PRICE_BRACKETS) -1)
+            price = random.randint(
+                int(100*PRICE_BRACKETS[price_idx][0]), int(100*PRICE_BRACKETS[price_idx][1]))/100.0
+            prices[itemset[0]] = price
     
     data = {}
     for (itemset, support) in patterns.items():
         if len(itemset) > K_FOR_KUI_IDX:
             continue
-        price_idx = random.randint(0, len(PRICE_BRACKETS) - 1)
-        price = random.randint(
-            int(100*PRICE_BRACKETS[price_idx][0]), int(100*PRICE_BRACKETS[price_idx][1]))/100.0
-        data[itemset] = (support, price)
+        # price_idx = random.randint(0, len(PRICE_BRACKETS) - 1)
+        # price = random.randint(
+        #     int(100*PRICE_BRACKETS[price_idx][0]), int(100*PRICE_BRACKETS[price_idx][1]))/100.0
+        sum_price = 0
+        for item in itemset:
+            sum_price += prices[item]
+            print ('price item ')
+            print ('item ')
+            print(item)
+            print('price')
+            print(prices[item])
+
+        print ('print itemset')
+        print ('itemset')
+        print (itemset)
+        print ('sum price')
+        print (sum_price)
+        data[itemset] = (support, sum_price)
 
     return (data, test_transactions)
 
