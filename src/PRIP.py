@@ -2,6 +2,7 @@
 Given arc, kui index, data dictionary, slots
 Runs PRIP algorithm and returns slots.
 '''
+import globals
 
 def PRIP(data_dict, kui_idx, arc, slot_sizes):
     '''
@@ -28,17 +29,31 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
         CAS.append(len(slot_sizes[i]))
         total_slots += len(slot_sizes[i])
         slots.append([])
-    
     # placing 1 itemsets
     Y = []
     for i in range(0, num_type_slots):
-        Y.append(int((len(slot_sizes[i])/float(total_slots))*len(arc.keys())))
+        # print (arc.keys())
+        # print(min(
+        #         int(globals.ONE_ITEMSET_RATIO * len(slot_sizes[i])),
+        #         int((len(slot_sizes[i])/float(total_slots))*len(arc.keys()))
+        #     ))
+        Y.append(
+            min(
+                int(globals.ONE_ITEMSET_RATIO * len(slot_sizes[i])),
+                int((len(slot_sizes[i])/float(total_slots))*len(arc.keys()))
+            )
+        )
     else:
-        Y[num_type_slots-1] += len(arc.keys()) - sum(Y)
+        if Y[num_type_slots - 1] == globals.ONE_ITEMSET_RATIO * len(slot_sizes[num_type_slots - 1]):
+            pass
+        else:
+            Y[num_type_slots-1] += len(arc.keys()) - sum(Y)
 
     # Adjusting CAS
     for i in range(0, num_type_slots):
         CAS[i] -= Y[i]
+
+    #print (Y)
 
     revenue_1_itemset = {}
     for node in kui_idx[1]:
@@ -46,9 +61,11 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
 
     for (item, price) in arc.items():
         placed = False
+        if s_type == num_type_slots:
+            break
         while not placed:
             if Y[s_type] != 0:
-                slots[s_type].append((item,))
+                slots[s_type].append(((item,), price))
                 item_placed += 1
                 ITEMS_PLACED += 1
                 try:

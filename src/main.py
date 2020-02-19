@@ -67,11 +67,11 @@ if __name__ == '__main__':
     # get empty slots
     slots = get_slots(num_slots, type_slots, zipf)
     # get sorted arc
-    arc = get_arc(data_dict)
+    arc = get_arc(train_data_dict)
     if CH_FNAME is not None:
-        slots = DPRIP(data_dict, kui_idx, dranks, arc, slots)
+        slots = DPRIP(train_data_dict, kui_idx, dranks, arc, slots)
     else:
-        slots = PRIP(data_dict, kui_idx, arc, slots)
+        slots = PRIP(train_data_dict, kui_idx, arc, slots)
     end = time.time()
 
     print ('TIME -> ')
