@@ -71,17 +71,6 @@ def parse_data(data_file_name, dataset_name):
         sum_price = 0
         for item in itemset:
             sum_price += prices[item]
-            print ('price item ')
-            print ('item ')
-            print(item)
-            print('price')
-            print(prices[item])
-
-        print ('print itemset')
-        print ('itemset')
-        print (itemset)
-        print ('sum price')
-        print (sum_price)
         data[itemset] = (support, sum_price)
 
     return (data, test_transactions)
