@@ -65,13 +65,10 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
             break
         while not placed:
             if Y[s_type] != 0:
-                slots[s_type].append(((item,), price))
+                slots[s_type].append(((item,), (price*1.0)/(1+s_type)))
                 item_placed += 1
                 ITEMS_PLACED += 1
-                try:
-                    TOTAL_REVENUE += revenue_1_itemset[(item,)]
-                except:
-                    pass
+                TOTAL_REVENUE += price
                 Y[s_type] -= 1
                 placed = True
             if(Y[s_type] == 0):
@@ -115,11 +112,12 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
                         # print('lv h[lv]')
                         # print(lv)
                         # print(h[lv])
-                        itemset = tuple([kui_idx[lv][h[lv]][0], kui_idx[lv][h[lv]][-2]])
+                        
+                        itemset = tuple([kui_idx[ilv][h[ilv]][0], (kui_idx[ilv][h[ilv]][-3]*1.0)/(1+stype)])
                         slots[stype].append(itemset)
                         ITEMS_PLACED += len(itemset)
                         SLOT_WISE_REVENUE[stype] += kui_idx[ilv][h[ilv]][-1]
-                        TOTAL_REVENUE += kui_idx[ilv][h[ilv]][-2] * (1.0 / (stype+1))
+                        TOTAL_REVENUE += kui_idx[ilv][h[ilv]][-3] * (1.0 / (stype+1))
                         h[ilv] += 1
                         CAS[stype] = CAS[stype] - ilv
                         placed = True
@@ -127,11 +125,11 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
             else:
                 if h[lv] >= len(kui_idx[lv]):
                     continue
-                itemset = tuple([kui_idx[lv][h[lv]][0], kui_idx[lv][h[lv]][-2]])
+                itemset = tuple([kui_idx[lv][h[lv]][0], (kui_idx[lv][h[lv]][-3]*1.0)/(1+stype)])
                 slots[stype].append(itemset)
                 ITEMS_PLACED += len(itemset)
                 SLOT_WISE_REVENUE[stype] += kui_idx[lv][h[lv]][-1]
-                TOTAL_REVENUE += kui_idx[lv][h[lv]][-2] * (1.0/ (stype+1))
+                TOTAL_REVENUE += kui_idx[lv][h[lv]][-3] * (1.0/ (stype+1))
                 h[lv] += 1
                 CAS[stype] = CAS[stype] - lv
         if can_place_more == False:
@@ -145,8 +143,8 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
     # print(sum([len(k) for k in data_dict.keys()]))
     # print('TOTAL_SLOTS ->')
     # print(total_slots)
-    # print('TOTAL_REVENUE ->')
-    # print(TOTAL_REVENUE)
+    print('TOTAL_REVENUE_TRAINING_PLACEMENT ->')
+    print(TOTAL_REVENUE)
     # print ('SLOT WISE REVENUE ->')
     # print (SLOT_WISE_REVENUE)
     return slots
