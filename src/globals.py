@@ -13,9 +13,9 @@ NUM_TYPE_SLOTS = 3
 # NUM_SLOTS is a dictionary to give num slots in each slot type
 # so number of keys in NUM_SLOTS is equal to NUM_TYPE_SLOTS
 NUM_SLOTS = { 
-    0: 10,
-    1: 10,
-    2: 10
+    0: 30,
+    1: 30,
+    2: 40
 }
 # Max ration of a slot to be filled by one itemsets
 ONE_ITEMSET_RATIO = 0.8

@@ -48,45 +48,45 @@ def parse_data(data_file_name, dataset_name):
     test_transactions = transactions[int(TRAIN_RATIO*data_size)+1 : data_size]
     test_transactions = [trans for trans in test_transactions if len(trans) <= K_FOR_KUI_IDX and len(trans) > 1]
 
-    #patterns, rules = apriori(train_transactions, min_support=SUPPORT_THRESH, min_confidence=1)
+    patterns, rules = apriori(train_transactions, min_support=SUPPORT_THRESH, min_confidence=1)
     # get patterns to pyfpgrowth result format
-    patterns = imsapriori.find_patterns(train_transactions, SD=SD, LS=LS)
-    print ('patterns >')
-    item_count = 0
-    for item, sup in patterns.items():
-        print (item, end=' ')
-        print (sup)
-        if len(item) == 1:
-            item_count += 1
+    # patterns = imsapriori.find_patterns(train_transactions, SD=SD, LS=LS)
+    # # print ('patterns >')
+    # item_count = 0
+    # for item, sup in patterns.items():
+    #     print (item, end=' ')
+    #     print (sup)
+    #     if len(item) == 1:
+    #         item_count += 1
     # print (patterns)
-    print ('\n\n\n\n\n')
-    print ('ITEM COUNT')
-    print (item_count)
-    # mod_patterns = {}
-    # for key in patterns.keys():
-    #     for k, v in patterns[key].items():
-    #         mod_patterns[k] = v
-    # patterns = mod_patterns
+    # print ('\n\n\n\n\n')
+    # print ('ITEM COUNT')
+    # print (item_count)
+    mod_patterns = {}
+    for key in patterns.keys():
+        for k, v in patterns[key].items():
+            mod_patterns[k] = v
+    patterns = mod_patterns
 
-    prices = {}
-    for (itemset, support) in patterns.items():
-        if len(itemset) == 1:
-            price_idx = random.randint(0, len(PRICE_BRACKETS) -1)
-            price = random.randint(
-                int(100*PRICE_BRACKETS[price_idx][0]), int(100*PRICE_BRACKETS[price_idx][1]))/100.0
-            prices[itemset[0]] = price
+    # prices = {}
+    # for (itemset, support) in patterns.items():
+    #     if len(itemset) == 1:
+    #         price_idx = random.randint(0, len(PRICE_BRACKETS) -1)
+    #         price = random.randint(
+    #             int(100*PRICE_BRACKETS[price_idx][0]), int(100*PRICE_BRACKETS[price_idx][1]))/100.0
+    #         prices[itemset[0]] = price
     
     data = {}
     for (itemset, support) in patterns.items():
         if len(itemset) > K_FOR_KUI_IDX:
             continue
-        # price_idx = random.randint(0, len(PRICE_BRACKETS) - 1)
-        # price = random.randint(
-        #     int(100*PRICE_BRACKETS[price_idx][0]), int(100*PRICE_BRACKETS[price_idx][1]))/100.0
-        sum_price = 0
-        for item in itemset:
-            sum_price += prices[item]
-        data[itemset] = (support, sum_price)
+        price_idx = random.randint(0, len(PRICE_BRACKETS) - 1)
+        price = random.randint(
+            int(100*PRICE_BRACKETS[price_idx][0]), int(100*PRICE_BRACKETS[price_idx][1]))/100.0
+        # sum_price = 0
+        # for item in itemset:
+        #     sum_price += prices[item]
+        data[itemset] = (support, price)
 
     return (data, test_transactions)
 
