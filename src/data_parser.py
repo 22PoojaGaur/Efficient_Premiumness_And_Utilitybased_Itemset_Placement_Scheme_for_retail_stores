@@ -9,12 +9,15 @@ from efficient_apriori import apriori
 import math
 import random
 import globals
+import imsapriori
 
 # Set a very low threshold to get all itemsets
 SUPPORT_THRESH = globals.SUPPORT_THRESHOLD
 K_FOR_KUI_IDX = globals.K_FOR_KUI_IDX
 TEST_RATIO = globals.TEST_SPLIT
 TRAIN_RATIO = globals.TRAIN_SPLIT
+SD = globals.SD
+LS = globals.LS
 
 PRICE_BRACKETS = globals.PRICE_BRACKETS
 
@@ -45,13 +48,25 @@ def parse_data(data_file_name, dataset_name):
     test_transactions = transactions[int(TRAIN_RATIO*data_size)+1 : data_size]
     test_transactions = [trans for trans in test_transactions if len(trans) <= K_FOR_KUI_IDX and len(trans) > 1]
 
-    patterns, rules = apriori(train_transactions, min_support=SUPPORT_THRESH, min_confidence=1)
+    #patterns, rules = apriori(train_transactions, min_support=SUPPORT_THRESH, min_confidence=1)
     # get patterns to pyfpgrowth result format
-    mod_patterns = {}
-    for key in patterns.keys():
-        for k, v in patterns[key].items():
-            mod_patterns[k] = v
-    patterns = mod_patterns
+    patterns = imsapriori.find_patterns(train_transactions, SD=SD, LS=LS)
+    print ('patterns >')
+    item_count = 0
+    for item, sup in patterns.items():
+        print (item, end=' ')
+        print (sup)
+        if len(item) == 1:
+            item_count += 1
+    # print (patterns)
+    print ('\n\n\n\n\n')
+    print ('ITEM COUNT')
+    print (item_count)
+    # mod_patterns = {}
+    # for key in patterns.keys():
+    #     for k, v in patterns[key].items():
+    #         mod_patterns[k] = v
+    # patterns = mod_patterns
 
     prices = {}
     for (itemset, support) in patterns.items():

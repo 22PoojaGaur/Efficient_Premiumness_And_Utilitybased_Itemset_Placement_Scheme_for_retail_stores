@@ -137,12 +137,12 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
             stype += 1
             can_place_more = True
 
-    # print('ITEMS_PLACED ->')
-    # print(ITEMS_PLACED)
-    # print('TOTAL ITEMS ->')
-    # print(sum([len(k) for k in data_dict.keys()]))
-    # print('TOTAL_SLOTS ->')
-    # print(total_slots)
+    print('ITEMS_PLACED ->')
+    print(ITEMS_PLACED)
+    print('TOTAL ITEMS ->')
+    print(sum([len(k) for k in data_dict.keys()]))
+    print('TOTAL_SLOTS ->')
+    print(total_slots)
     print('TOTAL_REVENUE_TRAINING_PLACEMENT ->')
     print(TOTAL_REVENUE)
     # print ('SLOT WISE REVENUE ->')

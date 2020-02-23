@@ -80,6 +80,7 @@ if __name__ == '__main__':
     output = open('prip_slots_%d.pkl' % type_slots, 'wb')
     pkl.dump(slots, output)
     output.close()
+    print (kui_idx)
 
     evaluate(slots, test_transactions)
     #print('KUI INDEX->')
