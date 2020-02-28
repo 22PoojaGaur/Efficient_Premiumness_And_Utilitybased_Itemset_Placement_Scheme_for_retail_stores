@@ -48,7 +48,7 @@ if __name__ == '__main__':
         ch_dict = parse_ch_dict(CH_FNAME)
         dranks = get_dranks(train_data_dict.keys(), ch_dict)
         # kui_idx = get_kui_index(data_dict, dranks=dranks, method='R')
-        kui_idx = get_kui_index(train_data_dict, dranks=dranks, method='R')
+        kui_idx = get_kui_index(train_data_dict, dranks=dranks, method='H')
     else:
         # run without diversity mode
         if DEBUG_MODE:

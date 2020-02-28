@@ -29,7 +29,8 @@ def _get_kui_idx_with_hybrid_approach(data, dranks):
             to_sort = []
             # add all elements in window
             while j < len(kui[i]) and kui[i][j][-2] >= window[1]:
-                to_sort.append(kui[i][j])
+                if kui[i][j][-1] >= KUI_DRANK_THRESHOLD:
+                    to_sort.append(kui[i][j])
                 j += 1
 
             kui_level.extend(_sort_by_drank(to_sort))
