@@ -25,11 +25,12 @@ def _DPRIP(deta_dict, kui_idx, dranks, arc, slot_sizes):
             top_kui_node = kui_idx[top[0]][top_kui_ptrs[top[0]]]
             print (top)
             print (top_kui_node)
-            slots[stype].append((kui_idx[top[0]][top_kui_ptrs[top[0]]][0],kui_idx[top[0]][top_kui_ptrs[top[0]]][2]))
-            TOTAL_REVENUE += (kui_idx[top[0]][top_kui_ptrs[top[0]]][2] * 1.0)/(1+stype)
-            CAS[stype] -= len(kui_idx[top[0]][top_kui_ptrs[top[0]]][0])
+            if len(kui_idx[top[0]][top_kui_ptrs[top[0]]][0]) > 1:
+                slots[stype].append((kui_idx[top[0]][top_kui_ptrs[top[0]]][0],kui_idx[top[0]][top_kui_ptrs[top[0]]][2]))
+                TOTAL_REVENUE += (kui_idx[top[0]][top_kui_ptrs[top[0]]][2] * 1.0)/(1+stype)
+                CAS[stype] -= len(kui_idx[top[0]][top_kui_ptrs[top[0]]][0])
             top_kui_ptrs[top[0]] += 1
-            top_kui_per_slot_rev[top[0]] = kui_idx[top[0]][top_kui_ptrs[top[0]]][-3]/float(i)
+            top_kui_per_slot_rev[top[0]] = kui_idx[top[0]][top_kui_ptrs[top[0]]][-3]/float(top[0])
 
     print ('TOTAL REVENUE TRAINING ')
     print (TOTAL_REVENUE)

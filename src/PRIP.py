@@ -30,54 +30,54 @@ def PRIP(data_dict, kui_idx, arc, slot_sizes):
         total_slots += len(slot_sizes[i])
         slots.append([])
     # placing 1 itemsets
-    Y = []
-    for i in range(0, num_type_slots):
-        # print (arc.keys())
-        # print(min(
-        #         int(globals.ONE_ITEMSET_RATIO * len(slot_sizes[i])),
-        #         int((len(slot_sizes[i])/float(total_slots))*len(arc.keys()))
-        #     ))
-        Y.append(
-            min(
-                int(globals.ONE_ITEMSET_RATIO * len(slot_sizes[i])),
-                int((len(slot_sizes[i])/float(total_slots))*len(arc.keys()))
-            )
-        )
-    else:
-        if Y[num_type_slots - 1] == globals.ONE_ITEMSET_RATIO * len(slot_sizes[num_type_slots - 1]):
-            pass
-        else:
-            Y[num_type_slots-1] += len(arc.keys()) - sum(Y)
+    # Y = []
+    # for i in range(0, num_type_slots):
+    #     # print (arc.keys())
+    #     # print(min(
+    #     #         int(globals.ONE_ITEMSET_RATIO * len(slot_sizes[i])),
+    #     #         int((len(slot_sizes[i])/float(total_slots))*len(arc.keys()))
+    #     #     ))
+    #     Y.append(
+    #         min(
+    #             int(globals.ONE_ITEMSET_RATIO * len(slot_sizes[i])),
+    #             int((len(slot_sizes[i])/float(total_slots))*len(arc.keys()))
+    #         )
+    #     )
+    # else:
+    #     if Y[num_type_slots - 1] == globals.ONE_ITEMSET_RATIO * len(slot_sizes[num_type_slots - 1]):
+    #         pass
+    #     else:
+    #         Y[num_type_slots-1] += len(arc.keys()) - sum(Y)
 
-    # Adjusting CAS
-    for i in range(0, num_type_slots):
-        CAS[i] -= Y[i]
+    # # Adjusting CAS
+    # for i in range(0, num_type_slots):
+    #     CAS[i] -= Y[i]
 
-    #print (Y)
+    # #print (Y)
 
-    revenue_1_itemset = {}
-    for node in kui_idx[1]:
-        revenue_1_itemset[node[1]] = node[2]
+    # revenue_1_itemset = {}
+    # for node in kui_idx[1]:
+    #     revenue_1_itemset[node[1]] = node[2]
 
-    for (item, price) in arc.items():
-        placed = False
-        if s_type == num_type_slots:
-            break
-        while not placed:
-            if Y[s_type] != 0:
-                slots[s_type].append(((item,), (price*1.0)/(1+s_type)))
-                item_placed += 1
-                ITEMS_PLACED += 1
-                try:
-                    TOTAL_REVENUE += (revenue_1_itemset[(item,)] * 1.0)/(1+s_type)
-                except:
-                    pass
-                Y[s_type] -= 1
-                placed = True
-            if(Y[s_type] == 0):
-                s_type += 1
-            if s_type == num_type_slots:
-                break
+    # for (item, price) in arc.items():
+    #     placed = False
+    #     if s_type == num_type_slots:
+    #         break
+    #     while not placed:
+    #         if Y[s_type] != 0:
+    #             slots[s_type].append(((item,), (price*1.0)/(1+s_type)))
+    #             item_placed += 1
+    #             ITEMS_PLACED += 1
+    #             try:
+    #                 TOTAL_REVENUE += (revenue_1_itemset[(item,)] * 1.0)/(1+s_type)
+    #             except:
+    #                 pass
+    #             Y[s_type] -= 1
+    #             placed = True
+    #         if(Y[s_type] == 0):
+    #             s_type += 1
+    #         if s_type == num_type_slots:
+    #             break
 
 
     # Scan kUI Index to fill remaining slots
