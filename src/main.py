@@ -83,6 +83,15 @@ if __name__ == '__main__':
     # print (kui_idx)
 
     evaluate(slots, test_transactions)
+    for st in range(0, len(slots)):
+        for trans in slots[st]:
+            print (len(trans[0]), end=',')
+    print ('DATA ITEMSETS')
+    print (len(train_data_dict.keys()))
+    # for level in kui_idx.keys():
+    #     for node in kui_idx[level]:
+    #         print(len(node[0]), end=',')
+        
     #print('KUI INDEX->')
     # print (kui_idx[1])
     # print(len(kui_idx[1]))

@@ -44,6 +44,8 @@ def parse_data(data_file_name, dataset_name):
 
     # split transactions in test train
     data_size = len(transactions)
+    print ('LENGTH OF DATASET')
+    print (data_size)
     train_transactions = transactions
     test_transactions = transactions[int(TRAIN_RATIO*data_size)+1 : data_size]
     test_transactions = [trans for trans in test_transactions if len(trans) <= K_FOR_KUI_IDX and len(trans) > 1]

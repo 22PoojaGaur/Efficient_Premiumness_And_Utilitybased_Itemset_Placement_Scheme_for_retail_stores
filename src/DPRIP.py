@@ -18,19 +18,26 @@ def _DPRIP(deta_dict, kui_idx, dranks, arc, slot_sizes):
     top_kui_ptrs = [0]*(len(kui_idx.keys())+1)
     top_kui_per_slot_rev = [0]*(len(kui_idx.keys())+1)
     for i in kui_idx.keys():
-        top_kui_per_slot_rev[i] = (kui_idx[i][top_kui_ptrs[i]][-3])/float(i)
+        top_kui_per_slot_rev[i] = (kui_idx[i][top_kui_ptrs[i]][-2])/float(i)
     for stype in range(0, slot_types):
         while CAS[stype] >= 0:
-            top = max(enumerate(top_kui_per_slot_rev))
+            # top -> [idx, price]
+            top = [0,0]
+            for idx, val in enumerate(top_kui_per_slot_rev):
+                if val > top[1]:
+                    top = [idx, val]
             top_kui_node = kui_idx[top[0]][top_kui_ptrs[top[0]]]
             print (top)
             print (top_kui_node)
             if len(kui_idx[top[0]][top_kui_ptrs[top[0]]][0]) > 1:
                 slots[stype].append((kui_idx[top[0]][top_kui_ptrs[top[0]]][0],kui_idx[top[0]][top_kui_ptrs[top[0]]][2]))
-                TOTAL_REVENUE += (kui_idx[top[0]][top_kui_ptrs[top[0]]][2] * 1.0)/(1+stype)
+                TOTAL_REVENUE += (kui_idx[top[0]][top_kui_ptrs[top[0]]][-2] * 1.0)/(1+stype)
                 CAS[stype] -= len(kui_idx[top[0]][top_kui_ptrs[top[0]]][0])
             top_kui_ptrs[top[0]] += 1
-            top_kui_per_slot_rev[top[0]] = kui_idx[top[0]][top_kui_ptrs[top[0]]][-3]/float(top[0])
+            if top_kui_ptrs[top[0]] >= len(kui_idx[top[0]]):
+                top_kui_per_slot_rev[top[0]] = -1
+            else:
+                top_kui_per_slot_rev[top[0]] = kui_idx[top[0]][top_kui_ptrs[top[0]]][-2]/float(top[0])
 
     print ('TOTAL REVENUE TRAINING ')
     print (TOTAL_REVENUE)
