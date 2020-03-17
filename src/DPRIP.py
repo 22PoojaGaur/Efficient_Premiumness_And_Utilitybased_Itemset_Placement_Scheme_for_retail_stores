@@ -19,6 +19,8 @@ def _DPRIP(deta_dict, kui_idx, dranks, arc, slot_sizes):
     top_kui_per_slot_rev = [0]*(len(kui_idx.keys())+1)
     for i in kui_idx.keys():
         top_kui_per_slot_rev[i] = (kui_idx[i][top_kui_ptrs[i]][-2])/float(i)
+    total_placed = 0
+    drank_mean = 0
     for stype in range(0, slot_types):
         while CAS[stype] >= 0:
             # top -> [idx, price]
@@ -30,7 +32,12 @@ def _DPRIP(deta_dict, kui_idx, dranks, arc, slot_sizes):
             print (top)
             print (top_kui_node)
             if len(kui_idx[top[0]][top_kui_ptrs[top[0]]][0]) > 1:
-                slots[stype].append((kui_idx[top[0]][top_kui_ptrs[top[0]]][0],kui_idx[top[0]][top_kui_ptrs[top[0]]][2]))
+                slots[stype].append((
+                    kui_idx[top[0]][top_kui_ptrs[top[0]]][0],
+                    kui_idx[top[0]][top_kui_ptrs[top[0]]][2], 
+                    kui_idx[top[0]][top_kui_ptrs[top[0]]][-1]))
+                drank_mean += kui_idx[top[0]][top_kui_ptrs[top[0]]][-1]
+                total_placed += 1
                 TOTAL_REVENUE += (kui_idx[top[0]][top_kui_ptrs[top[0]]][-2] * 1.0)/(1+stype)
                 CAS[stype] -= len(kui_idx[top[0]][top_kui_ptrs[top[0]]][0])
             top_kui_ptrs[top[0]] += 1
@@ -41,6 +48,8 @@ def _DPRIP(deta_dict, kui_idx, dranks, arc, slot_sizes):
 
     print ('TOTAL REVENUE TRAINING ')
     print (TOTAL_REVENUE)
+    print ('DRANK MEAN')
+    print (drank_mean/float(total_placed))
     # print ('CAS ->')
     # print (CAS)
     # print (top_kui_per_slot_rev)

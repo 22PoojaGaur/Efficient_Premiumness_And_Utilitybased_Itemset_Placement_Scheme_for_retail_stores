@@ -6,7 +6,7 @@ def evaluate(slots, test_transactions):
     for transaction in test_transactions:
         t = tuple(transaction)
         for stype in range(0,len(slots)):
-            for (item, price) in slots[stype]:
+            for (item, price, drank) in slots[stype]:
                 #print ('comparing ' + ' '.join(set(item)) + ' and ' + ' '.join(set(t)))
                 if set(item) == set(t):
                    # print ('MATCHED')
