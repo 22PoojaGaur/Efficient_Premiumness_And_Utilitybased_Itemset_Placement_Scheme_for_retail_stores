@@ -7,10 +7,13 @@ from PRIP import PRIP
 # This placement scheme will place itemsets based on the per_slot_revenue
 # contribution
 def _DPRIP(deta_dict, kui_idx, dranks, arc, slot_sizes):
+    TOTAL_PATTERNS = 0
+    TOTAL_SLOTS = 0
     TOTAL_REVENUE = 0
     slots = []
     slot_types = len(slot_sizes)
     for i in range(0, slot_types):
+        TOTAL_SLOTS += len(slot_sizes[i])
         slots.append([])
     CAS = []
     for stype in range(0, slot_types):
@@ -32,6 +35,7 @@ def _DPRIP(deta_dict, kui_idx, dranks, arc, slot_sizes):
             print (top)
             print (top_kui_node)
             if len(kui_idx[top[0]][top_kui_ptrs[top[0]]][0]) > 1:
+                TOTAL_PATTERNS += 1
                 slots[stype].append((
                     kui_idx[top[0]][top_kui_ptrs[top[0]]][0],
                     kui_idx[top[0]][top_kui_ptrs[top[0]]][2], 
@@ -50,6 +54,10 @@ def _DPRIP(deta_dict, kui_idx, dranks, arc, slot_sizes):
     print (TOTAL_REVENUE)
     print ('DRANK MEAN')
     print (drank_mean/float(total_placed))
+    print ('PATTERNS PLACED (TRAIN)')
+    print (TOTAL_PATTERNS)
+    print ('SLOTS TOTAL')
+    print (TOTAL_SLOTS)
     # print ('CAS ->')
     # print (CAS)
     # print (top_kui_per_slot_rev)
