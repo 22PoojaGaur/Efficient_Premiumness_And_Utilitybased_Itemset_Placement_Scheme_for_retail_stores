@@ -14,10 +14,12 @@ import globals
 
 import _pickle as pkl
 import time
+import os
 from os import path
 from random import random
 
 DEBUG_MODE = False
+METHOD = 'R'
 
 # Adding argument parser.
 parser = argparse.ArgumentParser()
@@ -48,7 +50,7 @@ if __name__ == '__main__':
         ch_dict = parse_ch_dict(CH_FNAME)
         dranks = get_dranks(train_data_dict.keys(), ch_dict)
         # kui_idx = get_kui_index(data_dict, dranks=dranks, method='R')
-        kui_idx = get_kui_index(train_data_dict, dranks=dranks, method='R')
+        kui_idx = get_kui_index(train_data_dict, dranks=dranks, method=METHOD)
     else:
         # run without diversity mode
         if DEBUG_MODE:
@@ -69,7 +71,7 @@ if __name__ == '__main__':
     # get sorted arc
     arc = get_arc(train_data_dict)
     if CH_FNAME is not None:
-        slots = DPRIP(train_data_dict, kui_idx, dranks, arc, slots)
+        (slots, num_slots, tr_train, dr_train) = DPRIP(train_data_dict, kui_idx, dranks, arc, slots)
     else:
         slots = PRIP(train_data_dict, kui_idx, arc, slots)
     end = time.time()
@@ -82,12 +84,12 @@ if __name__ == '__main__':
     output.close()
     # print (kui_idx)
 
-    evaluate(slots, test_transactions)
+    (tr_test, dr_test, place_test, num_total_test) = evaluate(slots, test_transactions)
     # for st in range(0, len(slots)):
     #     for trans in slots[st]:
     #         print (len(trans[0]), end=',')
-    print ('DATA ITEMSETS')
-    print (len(train_data_dict.keys()))
+    # print ('DATA ITEMSETS')
+    # print (len(train_data_dict.keys()))
     # for level in kui_idx.keys():
     #     for node in kui_idx[level]:
     #         print(len(node[0]), end=',')
@@ -104,3 +106,28 @@ if __name__ == '__main__':
     #print(arc)
     # print('slots->')
     # print(slots)
+
+    # Automating the write of graph essential files
+    # list of each metric would be stored in pkl files
+    pkl_prefix = METHOD + '_'
+    metrics = {
+        'num_slots': num_slots,
+        'total_revenue_train': tr_train,
+        'drank_mean_train': dr_train,
+        'num_placed_test': place_test,
+        'num_total_test': num_total_test,
+        'total_revenue_test': tr_test,
+        'drank_mean_test': dr_test
+    }
+
+    for metric in metrics.keys():
+        fname = pkl_prefix + metric + '.pkl'
+
+        if path.isfile(fname):
+            data = pkl.load(open(fname, 'rb'))
+            os.remove(fname)
+
+            data.append(metrics[metric])
+
+            pkl.dump(data, open(fname, 'wb'))
+            

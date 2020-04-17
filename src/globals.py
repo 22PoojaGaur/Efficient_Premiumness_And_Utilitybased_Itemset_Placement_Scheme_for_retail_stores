@@ -1,6 +1,6 @@
 TRAIN_SPLIT = 0.2
 TEST_SPLIT = 1 - TRAIN_SPLIT
-SUPPORT_THRESHOLD = 0.001
+SUPPORT_THRESHOLD = 0.002
 SD = 1.1
 LS = 0.001
 PRICE_BRACKETS = [
@@ -8,8 +8,8 @@ PRICE_BRACKETS = [
     (0.68, 0.84), (0.85, 1)]
 K_FOR_KUI_IDX = 6
 ALPHA = 0.2
-KUI_DRANK_THRESHOLD = 0.2 # note that change is made on '>=' threshold
-LAMBDA = 5000
+KUI_DRANK_THRESHOLD = 0.1 # note that change is made on '>=' threshold
+LAMBDA = 10000
 NUM_TYPE_SLOTS = 3
 # NUM_SLOTS is a dictionary to give num slots in each slot type
 # so number of keys in NUM_SLOTS is equal to NUM_TYPE_SLOTS
@@ -20,16 +20,66 @@ ZIPF = 0.7
 
 
 # slots for each size
+# 70
 # NUM_SLOTS =  { 0: 20, 1: 25, 2: 25 }
-# NUM_SLOTS =  { 0: 50, 1: 60, 2: 60 }
-# NUM_SLOTS =  { 0: 70, 1: 90, 2: 110 }
-# NUM_SLOTS =  { 0: 80, 1: 90, 2: 200 }
-# NUM_SLOTS =  { 0: 120, 1: 150, 2: 200 }
-# NUM_SLOTS =  { 0: 120, 1: 200, 2: 250 }
-#NUM_SLOTS =  { 0: 170, 1: 200, 2: 300 }
-# NUM_SLOTS =  { 0: 170, 1: 250, 2: 350 }
-# NUM_SLOTS =  { 0: 170, 1: 300, 2: 400 }
-# NUM_SLOTS =  { 0: 170, 1: 400, 2: 400 }
-#NUM_SLOTS =  { 0: 220, 1: 400, 2: 450 }
 
-NUM_SLOTS = {0:4000, 1:5000, 2:4000}
+# 170
+# NUM_SLOTS =  { 0: 50, 1: 60, 2: 60 }
+
+# 270
+# NUM_SLOTS =  { 0: 70, 1: 90, 2: 110 }
+
+# 370
+# NUM_SLOTS =  { 0: 80, 1: 90, 2: 200 }
+
+# 470
+# NUM_SLOTS =  { 0: 120, 1: 150, 2: 200 }
+
+# 570 
+# NUM_SLOTS =  { 0: 120, 1: 200, 2: 250 }
+
+# 670
+#NUM_SLOTS =  { 0: 170, 1: 200, 2: 300 }
+
+# 770
+# NUM_SLOTS =  { 0: 170, 1: 250, 2: 350 }
+
+# 870
+# NUM_SLOTS =  { 0: 170, 1: 300, 2: 400 }
+
+# 970
+# NUM_SLOTS =  { 0: 170, 1: 400, 2: 400 }
+
+# 1070
+# NUM_SLOTS =  { 0: 220, 1: 400, 2: 450 }
+
+# # 300
+# NUM_SLOTS = {0: 100, 1: 100, 2: 100}
+
+# # 600
+# NUM_SLOTS = {0: 150, 1: 250, 2: 200}
+
+# # 900
+# NUM_SLOTS = {0: 250, 1: 250, 2: 400}
+
+# # 1200
+# NUM_SLOTS = {0: 400, 1: 400, 2: 400}
+
+# 1500
+NUM_SLOTS = {0: 400, 1: 500, 2: 600}
+
+# # 2000
+# NUM_SLOTS = {0: 500, 1: 700, 2: 800}
+
+# # 2500
+# NUM_SLOTS = {0: 700, 1: 900, 2: 900}
+
+# # 3000
+# NUM_SLOTS = {0: 800, 1: 1100, 2: 1100}
+
+# # 4000
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+
+# # 5000
+# NUM_SLOTS = {0: 1500, 1: 1500, 2: 2000}
+

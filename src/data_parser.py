@@ -90,7 +90,13 @@ def parse_data(data_file_name, dataset_name):
             sum_price += prices[item]
         data[itemset] = (support, sum_price)
 
+    print('DEBUG: printing patterns ')
+    selected_keys = list(data.keys())[1:100]
+    for k in selected_keys:
+        print (k)
+        print (data[k])
     return (data, test_transactions)
+
 
 def parse_ch_dict(ch_file_name):
     '''
@@ -117,4 +123,9 @@ def parse_ch_dict(ch_file_name):
             path = line.strip().split(' ')
             item_path_dict[cur_item] = path
             is_item = 1
+    selected_keys = list(item_path_dict.keys())[1:100]
+    print ('DEBUG: print Concept Hierarchy')
+    for k in selected_keys:
+        print (k)
+        print (item_path_dict[k])
     return item_path_dict

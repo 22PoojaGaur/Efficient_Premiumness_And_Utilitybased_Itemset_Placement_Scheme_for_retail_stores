@@ -1,0 +1,220 @@
+DEBUG: print Concept Hierarchy
+all_seasons_salt
+['root', 'pantry', 'spices_seasonings', 'all_seasons_salt']
+robust_golden_unsweetened_oolong_tea
+['root', 'beverages', 'tea', 'robust_golden_unsweetened_oolong_tea']
+smart_ones_classic_favorites_mini_rigatoni_with_vodka_cream_sauce
+['root', 'frozen', 'frozen_meals', 'smart_ones_classic_favorites_mini_rigatoni_with_vodka_cream_sauce']
+green_chile_anytime_sauce
+['root', 'pantry', 'marinades_meat_preparation', 'green_chile_anytime_sauce']
+dry_nose_oil
+['root', 'personal_care', 'cold_flu_allergy', 'dry_nose_oil']
+pure_coconut_water_with_orange
+['root', 'beverages', 'juice_nectars', 'pure_coconut_water_with_orange']
+cut_russet_potatoes_steam_n_mash
+['root', 'frozen', 'frozen_produce', 'cut_russet_potatoes_steam_n_mash']
+light_strawberry_blueberry_yogurt
+['root', 'dairy_eggs', 'yogurt', 'light_strawberry_blueberry_yogurt']
+sparkling_orange_juice_prickly_pear_beverage
+['root', 'beverages', 'water_seltzer_sparkling_water', 'sparkling_orange_juice_prickly_pear_beverage']
+peach_mango_juice
+['root', 'beverages', 'refrigerated', 'peach_mango_juice']
+chocolate_fudge_layer_cake
+['root', 'frozen', 'frozen_dessert', 'chocolate_fudge_layer_cake']
+saline_nasal_mist
+['root', 'personal_care', 'cold_flu_allergy', 'saline_nasal_mist']
+fresh_scent_dishwasher_cleaner
+['root', 'household', 'dish_detergents', 'fresh_scent_dishwasher_cleaner']
+overnight_diapers_size_6
+['root', 'babies', 'diapers_wipes', 'overnight_diapers_size_6']
+mint_chocolate_flavored_syrup
+['root', 'snacks', 'ice_cream_toppings', 'mint_chocolate_flavored_syrup']
+rendered_duck_fat
+['root', 'meat_seafood', 'poultry_counter', 'rendered_duck_fat']
+pizza_for_one_suprema_frozen_pizza
+['root', 'frozen', 'frozen_pizza', 'pizza_for_one_suprema_frozen_pizza']
+gluten_free_quinoa_three_cheese_mushroom_blend
+['root', 'dry_goods_pasta', 'grains_rice_dried_goods', 'gluten_free_quinoa_three_cheese_mushroom_blend']
+pomegranate_cranberry_aloe_vera_enrich_drink
+['root', 'beverages', 'juice_nectars', 'pomegranate_cranberry_aloe_vera_enrich_drink']
+small_medium_dental_dog_treats
+['root', 'pets', 'dog_food_care', 'small_medium_dental_dog_treats']
+fresh_breath_oral_rinse_mild_mint
+['root', 'personal_care', 'oral_hygiene', 'fresh_breath_oral_rinse_mild_mint']
+organic_turkey_burgers
+['root', 'meat_seafood', 'packaged_poultry', 'organic_turkey_burgers']
+tri_vi_sol_vitamins_a_c_and_d_supplement_drops_for_infants
+['root', 'personal_care', 'vitamins_supplements', 'tri_vi_sol_vitamins_a_c_and_d_supplement_drops_for_infants']
+salted_caramel_lean_protein_fiber_bar
+['root', 'snacks', 'energy_granola_bars', 'salted_caramel_lean_protein_fiber_bar']
+fancy_feast_trout_feast_flaked_wet_cat_food
+['root', 'pets', 'cat_food_care', 'fancy_feast_trout_feast_flaked_wet_cat_food']
+complete_spring_water_foaming_antibacterial_hand_wash
+['root', 'personal_care', 'body_lotions_soap', 'complete_spring_water_foaming_antibacterial_hand_wash']
+wheat_chex_cereal
+['root', 'breakfast', 'cereal', 'wheat_chex_cereal']
+fresh_cut_golden_sweet_no_salt_added_whole_kernel_corn
+['root', 'canned_goods', 'canned_jarred_vegetables', 'fresh_cut_golden_sweet_no_salt_added_whole_kernel_corn']
+three_cheese_ziti_marinara_with_meatballs
+['root', 'frozen', 'frozen_meals', 'three_cheese_ziti_marinara_with_meatballs']
+white_pearl_onions
+['root', 'produce', 'packaged_vegetables_fruits', 'white_pearl_onions']
+nacho_cheese_white_bean_chips
+['root', 'snacks', 'chips_pretzels', 'nacho_cheese_white_bean_chips']
+organic_spaghetti_style_pasta
+['root', 'dry_goods_pasta', 'dry_pasta', 'organic_spaghetti_style_pasta']
+peanut_butter_cereal
+['root', 'breakfast', 'cereal', 'peanut_butter_cereal']
+italian_herb_porcini_mushrooms_chicken_sausage
+['root', 'meat_seafood', 'hot_dogs_bacon_sausage', 'italian_herb_porcini_mushrooms_chicken_sausage']
+traditional_lasagna_with_meat_sauce_savory_italian_recipes
+['root', 'frozen', 'frozen_meals', 'traditional_lasagna_with_meat_sauce_savory_italian_recipes']
+noodle_soup_mix_with_chicken_broth
+['root', 'canned_goods', 'soup_broth_bouillon', 'noodle_soup_mix_with_chicken_broth']
+ultra_antibacterial_dish_liquid
+['root', 'missing', 'missing', 'ultra_antibacterial_dish_liquid']
+daily_tangerine_citrus_flavored_beverage
+['root', 'beverages', 'energy_sports_drinks', 'daily_tangerine_citrus_flavored_beverage']
+beef_hot_links_beef_smoked_sausage_with_chile_peppers
+['root', 'meat_seafood', 'hot_dogs_bacon_sausage', 'beef_hot_links_beef_smoked_sausage_with_chile_peppers']
+organic_sourdough_einkorn_crackers_rosemary
+['root', 'snacks', 'crackers', 'organic_sourdough_einkorn_crackers_rosemary']
+biotin_1000_mcg
+['root', 'personal_care', 'vitamins_supplements', 'biotin_1000_mcg']
+organic_clementines
+['root', 'produce', 'packaged_vegetables_fruits', 'organic_clementines']
+sparkling_raspberry_seltzer
+['root', 'beverages', 'water_seltzer_sparkling_water', 'sparkling_raspberry_seltzer']
+european_cucumber
+['root', 'produce', 'fresh_vegetables', 'european_cucumber']
+raisin_cinnamon_bagels_5_count
+['root', 'frozen', 'frozen_breads_doughs', 'raisin_cinnamon_bagels_5_count']
+onion_flavor_organic_roasted_seaweed_snack
+['root', 'international', 'asian_foods', 'onion_flavor_organic_roasted_seaweed_snack']
+school_glue_washable_no_run
+['root', 'household', 'more_household', 'school_glue_washable_no_run']
+vegetarian_grain_meat_sausages_italian_4_ct
+['root', 'deli', 'tofu_meat_alternatives', 'vegetarian_grain_meat_sausages_italian_4_ct']
+pumpkin_muffin_mix
+['root', 'pantry', 'doughs_gelatins_bake_mixes', 'pumpkin_muffin_mix']
+sa_extra_hold_mousse_hair_styling
+['root', 'personal_care', 'hair_care', 'sa_extra_hold_mousse_hair_styling']
+mirabelle_brut_rose
+['root', 'alcohol', 'specialty_wines_champagnes', 'mirabelle_brut_rose']
+whole_leaf_pure_aloe_with_lemon_juice
+['root', 'beverages', 'juice_nectars', 'whole_leaf_pure_aloe_with_lemon_juice']
+24_7_performance_cat_litter
+['root', 'pets', 'cat_food_care', '24_7_performance_cat_litter']
+lasting_color_shampoo
+['root', 'personal_care', 'hair_care', 'lasting_color_shampoo']
+healthy_pop_butter_popcorn
+['root', 'snacks', 'popcorn_jerky', 'healthy_pop_butter_popcorn']
+flat_toothpicks
+['root', 'household', 'plates_bowls_cups_flatware', 'flat_toothpicks']
+whole_wheat_tortillas
+['root', 'bakery', 'tortillas_flat_bread', 'whole_wheat_tortillas']
+medium_taqueria_style_chipotle_salsa
+['root', 'snacks', 'fruit_vegetable_snacks', 'medium_taqueria_style_chipotle_salsa']
+cheesy_creations_roasted_garlic_parmesan_sauce
+['root', 'dry_goods_pasta', 'pasta_sauce', 'cheesy_creations_roasted_garlic_parmesan_sauce']
+ramen_noodles_soup_chicken_mushroom_flavor
+['root', 'canned_goods', 'soup_broth_bouillon', 'ramen_noodles_soup_chicken_mushroom_flavor']
+premium_deli_oven_roasted_turkey_breast
+['root', 'deli', 'lunch_meat', 'premium_deli_oven_roasted_turkey_breast']
+banana_sweet_potato_organic_teething_wafers
+['root', 'babies', 'baby_food_formula', 'banana_sweet_potato_organic_teething_wafers']
+autumn_vegetable_turkey_dinner_with_lil_bits_purees_dinner
+['root', 'babies', 'baby_food_formula', 'autumn_vegetable_turkey_dinner_with_lil_bits_purees_dinner']
+organic_red_wine_olive_oil_dressing_organic
+['root', 'pantry', 'salad_dressing_toppings', 'organic_red_wine_olive_oil_dressing_organic']
+european_style_spring_mix
+['root', 'produce', 'packaged_vegetables_fruits', 'european_style_spring_mix']
+jelly_blackberry
+['root', 'pantry', 'spreads', 'jelly_blackberry']
+pancake_mix_buttermilk
+['root', 'breakfast', 'hot_cereal_pancake_mixes', 'pancake_mix_buttermilk']
+vanilla_with_almond_milk_iced_coffee
+['root', 'beverages', 'coffee', 'vanilla_with_almond_milk_iced_coffee']
+sweet_cooking_rice_seasoning
+['root', 'international', 'asian_foods', 'sweet_cooking_rice_seasoning']
+ultra_7_inch_polypropylene_traditional_plates
+['root', 'household', 'plates_bowls_cups_flatware', 'ultra_7_inch_polypropylene_traditional_plates']
+organic_honeycrisp_apples
+['root', 'missing', 'missing', 'organic_honeycrisp_apples']
+jasmine_tea_unfiltered_ginger_ale
+['root', 'beverages', 'soft_drinks', 'jasmine_tea_unfiltered_ginger_ale']
+artisan_chick_n_apple_sausage
+['root', 'deli', 'tofu_meat_alternatives', 'artisan_chick_n_apple_sausage']
+hemp_protein_organic
+['root', 'personal_care', 'protein_meal_replacements', 'hemp_protein_organic']
+spinach_basil_garlic_linguini
+['root', 'dry_goods_pasta', 'fresh_pasta', 'spinach_basil_garlic_linguini']
+coconut_chocolate_chip_energy_bar
+['root', 'snacks', 'energy_granola_bars', 'coconut_chocolate_chip_energy_bar']
+nutter_butter_cookie_bites_go_pak
+['root', 'snacks', 'cookies_cakes', 'nutter_butter_cookie_bites_go_pak']
+wild_albacore_tuna_no_salt_added
+['root', 'canned_goods', 'canned_meat_seafood', 'wild_albacore_tuna_no_salt_added']
+french_tarragon_wine_vinegar
+['root', 'pantry', 'oils_vinegars', 'french_tarragon_wine_vinegar']
+blakes_chicken_parmesan_dinner
+['root', 'frozen', 'frozen_meals', 'blakes_chicken_parmesan_dinner']
+all_natural_100_apple_juice
+['root', 'beverages', 'juice_nectars', 'all_natural_100_apple_juice']
+100_whole_wheat_pita_bread
+['root', 'bakery', 'tortillas_flat_bread', '100_whole_wheat_pita_bread']
+lamb_shank
+['root', 'meat_seafood', 'packaged_meat', 'lamb_shank']
+soppressata_piccante
+['root', 'deli', 'lunch_meat', 'soppressata_piccante']
+camilia_single_liquid_doses
+['root', 'other', 'other', 'camilia_single_liquid_doses']
+classics_earl_grey_tea
+['root', 'beverages', 'tea', 'classics_earl_grey_tea']
+probiotics_high_potency_capsules
+['root', 'personal_care', 'vitamins_supplements', 'probiotics_high_potency_capsules']
+yogurt_fruit_dip_sliced_apples
+['root', 'produce', 'packaged_vegetables_fruits', 'yogurt_fruit_dip_sliced_apples']
+smorz_cereal
+['root', 'breakfast', 'cereal', 'smorz_cereal']
+kind_prenatal_once_daily
+['root', 'personal_care', 'vitamins_supplements', 'kind_prenatal_once_daily']
+meat_in_the_middle_large_rawhide_chews
+['root', 'pets', 'dog_food_care', 'meat_in_the_middle_large_rawhide_chews']
+uncured_cracked_pepper_beef
+['root', 'snacks', 'popcorn_jerky', 'uncured_cracked_pepper_beef']
+organic_blueberry_blitz_fruit_veggie_smoothie_mashups
+['root', 'babies', 'baby_food_formula', 'organic_blueberry_blitz_fruit_veggie_smoothie_mashups']
+organic_rice_vinegar
+['root', 'international', 'asian_foods', 'organic_rice_vinegar']
+sprinklez_confetti_fun_organic_toppings
+['root', 'pantry', 'baking_supplies_decor', 'sprinklez_confetti_fun_organic_toppings']
+organic_chamomile_lemon_tea
+['root', 'beverages', 'tea', 'organic_chamomile_lemon_tea']
+2_yellow_american_cheese
+['root', 'dairy_eggs', 'specialty_cheeses', '2_yellow_american_cheese']
+local_living_butter_lettuce
+['root', 'produce', 'fresh_vegetables', 'local_living_butter_lettuce']
+peanut_butter_strawberry_jam_sandwich
+['root', 'frozen', 'frozen_meals', 'peanut_butter_strawberry_jam_sandwich']
+CREATING KUI IDX WITH DIVERSITY
+DEBUG: KUI IDX
+[(('bag_of_organic_bananas', 'organic_hass_avocado', 'organic_strawberries'), 710, 1.6500000000000001, 1171.5, 0.0), (('bag_of_organic_bananas', 'organic_baby_spinach', 'organic_strawberries'), 587, 1.64, 962.68, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_cucumber', 'organic_strawberries'), 424, 2.23, 945.52, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_raspberries', 'organic_strawberries'), 649, 1.4, 908.5999999999999, 0.16666666666666666), (('large_lemon', 'limes', 'organic_avocado'), 389, 2.23, 867.47, 0.0), (('banana', 'large_lemon', 'limes'), 452, 1.73, 781.96, 0.0), (('banana', 'large_lemon', 'organic_avocado'), 477, 1.58, 753.6600000000001, 0.0), (('bag_of_organic_bananas', 'organic_cucumber', 'organic_hass_avocado'), 366, 2.05, 750.3, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_baby_spinach', 'organic_hass_avocado'), 497, 1.46, 725.62, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_blueberries', 'organic_strawberries'), 374, 1.79, 669.46, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_baby_spinach', 'organic_cucumber'), 321, 2.04, 654.84, 0.3333333333333333), (('bag_of_organic_bananas', 'organic_hass_avocado', 'organic_raspberries'), 531, 1.2200000000000002, 647.82, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_large_extra_fancy_fuji_apple', 'organic_strawberries'), 282, 2.17, 611.9399999999999, 0.0), (('large_lemon', 'limes', 'organic_baby_spinach'), 318, 1.92, 610.56, 0.16666666666666666), (('large_lemon', 'organic_avocado', 'organic_baby_spinach'), 334, 1.77, 591.18, 0.16666666666666666), (('banana', 'limes', 'organic_avocado'), 352, 1.6600000000000001, 584.32, 0.0), (('banana', 'organic_avocado', 'organic_baby_spinach'), 484, 1.2000000000000002, 580.8000000000001, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_strawberries', 'organic_whole_milk'), 353, 1.58, 557.74, 0.3333333333333333), (('bag_of_organic_bananas', 'organic_garlic', 'organic_yellow_onion'), 268, 2.03, 544.04, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_avocado', 'organic_strawberries'), 276, 1.95, 538.1999999999999, 0.0), (('banana', 'organic_avocado', 'organic_strawberries'), 379, 1.3900000000000001, 526.8100000000001, 0.0), (('bag_of_organic_bananas', 'organic_hass_avocado', 'organic_yellow_onion'), 309, 1.6800000000000002, 519.12, 0.16666666666666666), (('banana', 'large_lemon', 'organic_strawberries'), 331, 1.46, 483.26, 0.0), (('bag_of_organic_bananas', 'organic_hass_avocado', 'organic_lemon'), 353, 1.36, 480.08000000000004, 0.0), (('bag_of_organic_bananas', 'organic_avocado', 'organic_baby_spinach'), 269, 1.7599999999999998, 473.43999999999994, 0.16666666666666666), (('banana', 'large_lemon', 'organic_baby_spinach'), 371, 1.27, 471.17, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_lemon', 'organic_strawberries'), 305, 1.54, 469.7, 0.0), (('bag_of_organic_bananas', 'organic_strawberries', 'organic_zucchini'), 294, 1.45, 426.3, 0.16666666666666666), (('organic_baby_spinach', 'organic_hass_avocado', 'organic_strawberries'), 330, 1.28, 422.40000000000003, 0.16666666666666666), (('banana', 'organic_baby_spinach', 'organic_strawberries'), 376, 1.08, 406.08000000000004, 0.16666666666666666), (('organic_hass_avocado', 'organic_raspberries', 'organic_strawberries'), 381, 1.04, 396.24, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_baby_spinach', 'organic_raspberries'), 311, 1.21, 376.31, 0.16666666666666666), (('organic_blueberries', 'organic_raspberries', 'organic_strawberries'), 288, 1.1800000000000002, 339.84000000000003, 0.16666666666666666), (('bag_of_organic_bananas', 'organic_hass_avocado', 'organic_zucchini'), 264, 1.27, 335.28000000000003, 0.16666666666666666), (('banana', 'large_lemon', 'strawberries'), 281, 0.99, 278.19, 0.0), (('banana', 'organic_raspberries', 'organic_strawberries'), 315, 0.8400000000000001, 264.6, 0.16666666666666666), (('banana', 'organic_avocado', 'strawberries'), 267, 0.92, 245.64000000000001, 0.0)]
+TOTAL REVENUE TRAINING 
+47252.486666666664
+DRANK MEAN
+0.18421052631578944
+PATTERNS PLACED (TRAIN)
+38
+SLOTS TOTAL
+70
+TIME -> 
+0.0021295547485351562
+TOTAL REVENUE OF TEST PATTERNS PLACED ->
+49.85999999999999
+NUMBER OF TEST PATTERNS PLACED ->
+42
+32975
+[['coke_zero', 'golden_sweet_potato', 'leafy_green_romaine_lettuce', 'premium_italian_seasoned_croutons'], ['organic_strawberries', 'organic_mandarins', 'organic_blueberries'], ['blueberry_almond_breakfast_bars', 'cheerios_cereal', 'organic_sparkling_cider'], ['roasted_pine_nut_hummus', 'organic_low_fat_milk'], ['organic_green_cabbage', 'organic_bunny_luv_fresh_carrots', 'red_potatoes', 'organic_stoneground_mustard', 'earl_grey_black_tea', 'chamomile_tea'], ['organic_salted_butter', 'organic_veggie_bites', 'cinnamon_toast_crunch', 'blackberries', 'organic_spring_mix'], ['sparkling_natural_mineral_water', 'organic_red_onion', 'organic_basil'], ['frozen_whole_strawberries', 'naked_green_machine_boosted_juice_smoothie'], ['honeydew_chunks', 'vanilla_coconut_milk_yogurt', 'large_lemon', 'organic_chocolate_chip_cookie_dough'], ['organic_spring_mix', 'black_seedless_grapes', 'packaged_grape_tomatoes', 'clementines', 'organic_low_fat_milk', 'frozen_organic_blueberries']]
+DATA ITEMSETS
+1579
