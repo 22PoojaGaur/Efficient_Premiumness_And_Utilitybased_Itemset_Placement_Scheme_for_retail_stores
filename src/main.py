@@ -66,7 +66,7 @@ if __name__ == '__main__':
     # get empty slots
     slots = get_slots(num_slots, type_slots, zipf)
     (slots, num_slots, tr_train, dr_train) = DPRIP(
-        train_data, kui_idx, dranks, slots)
+        train_data, kui_idx, dranks, slots, method)
     end = time.time()
 
     time = end - start
