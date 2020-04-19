@@ -60,7 +60,16 @@ if __name__ == '__main__':
     dranks = {}
     
     (train_data, test_transaction, ch_dict, dranks) = get_data()
-    kui_idx = get_kui_index(train_data, dranks=dranks, method=method)
+    if method == 'RH':
+        kui_R = get_kui_index(train_data, dranks=dranks, method='R')
+        kui_H = get_kui_index(train_data, dranks=dranks, method='H')
+        kui_idx = {
+            'R': kui_R,
+            'H': kui_H
+        }
+    else:
+        kui_idx = get_kui_index(train_data, dranks=dranks, method=method)
+        
     
     start = time.time()
     # get empty slots
@@ -71,7 +80,7 @@ if __name__ == '__main__':
 
     time = end - start
 
-    (tr_test, dr_test, place_test, num_total_test) = evaluate(slots, test_transactions)
+    (tr_test, dr_test, place_test, num_total_test) = evaluate(slots, test_transaction)
 
     output = open('prip_slots_%d.pkl' % type_slots, 'wb')
     pkl.dump(slots, output)
@@ -79,7 +88,7 @@ if __name__ == '__main__':
 
     # Automating the write of graph essential files
     # list of each metric would be stored in pkl files
-    pkl_prefix = METHOD + '_'
+    pkl_prefix = method + '_'
     metrics = {
         'num_slots': num_slots,
         'total_revenue_train': tr_train,

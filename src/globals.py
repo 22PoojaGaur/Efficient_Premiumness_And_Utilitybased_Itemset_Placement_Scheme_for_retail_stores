@@ -2,12 +2,20 @@ TRAIN_SPLIT = 0.2
 TEST_SPLIT = 1 - TRAIN_SPLIT
 MINING_METHOD = 'apriori'
 SUPPORT_THRESHOLD = 0.002
+
+# below are specifically for ims apriori
 SD = 1.1
 LS = 0.001
+
 PRICE_BRACKETS = [
     (0.01, 0.16), (0.17, 0.33), (0.34, 0.50), (0.51, 0.67),
     (0.68, 0.84), (0.85, 1)]
 METHOD = 'H'
+
+# below are specifically for RH (similar to HC-HCHD) method.
+R_RATIO = 0.6
+H_RATIO = 0.4
+
 K_FOR_KUI_IDX = 6
 ALPHA = 0.2
 KUI_DRANK_THRESHOLD = 0.1 # note that change is made on '>=' threshold
@@ -56,7 +64,7 @@ ZIPF = 0.7
 # NUM_SLOTS =  { 0: 220, 1: 400, 2: 450 }
 
 # # 300
-# NUM_SLOTS = {0: 100, 1: 100, 2: 100}
+NUM_SLOTS = {0: 100, 1: 100, 2: 100}
 
 # # 600
 # NUM_SLOTS = {0: 150, 1: 250, 2: 200}
@@ -68,7 +76,7 @@ ZIPF = 0.7
 # NUM_SLOTS = {0: 400, 1: 400, 2: 400}
 
 # 1500
-NUM_SLOTS = {0: 400, 1: 500, 2: 600}
+# NUM_SLOTS = {0: 400, 1: 500, 2: 600}
 
 # # 2000
 # NUM_SLOTS = {0: 500, 1: 700, 2: 800}
