@@ -6,9 +6,7 @@ from PRIP import PRIP
 
 # This placement scheme will place itemsets based on the per_slot_revenue
 # contribution
-def _DPRIP(deta_dict, kui_idx, dranks, arc, slot_sizes):
-    # print ('DEBUG: KUI IDX')
-    # print (kui_idx[3])
+def _DPRIP(deta_dict, kui_idx, dranks, slot_sizes):
     TOTAL_PATTERNS = 0
     TOTAL_SLOTS = 0
     TOTAL_REVENUE = 0
@@ -69,22 +67,10 @@ def _DPRIP(deta_dict, kui_idx, dranks, arc, slot_sizes):
     print (TOTAL_PATTERNS)
     print ('SLOTS TOTAL')
     print (TOTAL_SLOTS)
-    # print ('CAS ->')
-    # print (CAS)
-    # print (top_kui_per_slot_rev)
-    # print (slot_types)
-    # print (max(enumerate(top_kui_per_slot_rev)))
-    # print (kui_idx[4][0])
-    # print (kui_idx[3][0])
-    # print (kui_idx[2][0])
-    # print (kui_idx[1][0])
+    
     return (slots, TOTAL_SLOTS, TOTAL_REVENUE,
                 str(drank_mean/float(total_placed)))
 
-def DPRIP(data_dict, kui_idx, dranks, arc, slot_sizes, method='INDIVIDUAL'):
-    (slots, a, b, c) = _DPRIP(data_dict, kui_idx, dranks, arc, slot_sizes)
-    # if method == 'INDIVIDUAL':
-    #     slots = PRIP(data_dict, kui_idx, arc, slot_sizes)
-    # elif method == 'OVERALL':
-    #     slots = _DPRIP(data_dict, kui_idx, dranks, arc, slot_sizes)
+def DPRIP(data_dict, kui_idx, dranks, slot_sizes, method='INDIVIDUAL'):
+    (slots, a, b, c) = _DPRIP(data_dict, kui_idx, dranks, slot_sizes)
     return (slots, a, b, c)

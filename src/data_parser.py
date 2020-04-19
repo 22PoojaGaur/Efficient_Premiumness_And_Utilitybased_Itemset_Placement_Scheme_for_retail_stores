@@ -3,23 +3,22 @@ Returns Data dictionary with the format -
 key -> itemset
 value -> (support, price)
 '''
-
-# import pyfpgrowth
 from efficient_apriori import apriori
 import math
 import random
 import globals
 import imsapriori
 
-# Set a very low threshold to get all itemsets
+# Get useful global variables
 SUPPORT_THRESH = globals.SUPPORT_THRESHOLD
 K_FOR_KUI_IDX = globals.K_FOR_KUI_IDX
 TEST_RATIO = globals.TEST_SPLIT
 TRAIN_RATIO = globals.TRAIN_SPLIT
 SD = globals.SD
 LS = globals.LS
-
 PRICE_BRACKETS = globals.PRICE_BRACKETS
+mining_method = globals.MINING_METHOD
+
 
 def nonblank_lines(f):
     for l in f:
@@ -27,49 +26,37 @@ def nonblank_lines(f):
         if line:
             yield line
 
-def parse_data(data_file_name, dataset_name):
+
+def parse_data(data_file_name):
     '''
     Args -
         data_file_name: str. file name for dataset
-        dataset_name: str. Name of dataset in ['tesco', 'retail']
     '''
     transactions = []
     with open(data_file_name, 'r') as f:
         for line in nonblank_lines(f):
             transactions.append(line)
-    if dataset_name == 'retail':
-        transactions = [[int(item) for item in transaction.strip().split(' ')] for transaction in transactions]
-    elif dataset_name == 'tesco':
-        transactions = [[item for item in transaction.strip().split(';')] for transaction in transactions]
+
+    transactions = [[item for item in transaction.strip().split(';')] for transaction in transactions]
 
     # split transactions in test train
     data_size = len(transactions)
-    print ('LENGTH OF DATASET')
-    print (data_size)
     train_transactions = transactions
     test_transactions = transactions[int(TRAIN_RATIO*data_size)+1 : data_size]
     test_transactions = [trans for trans in test_transactions if len(trans) <= K_FOR_KUI_IDX and len(trans) > 1]
 
-    patterns, rules = apriori(train_transactions, min_support=SUPPORT_THRESH, min_confidence=1)
-    # get patterns to pyfpgrowth result format
-    # patterns = imsapriori.find_patterns(train_transactions, SD=SD, LS=LS)
-    # # print ('patterns >')
-    # item_count = 0
-    # for item, sup in patterns.items():
-    #     print (item, end=' ')
-    #     print (sup)
-    #     if len(item) == 1:
-    #         item_count += 1
-    # print (patterns)
-    # print ('\n\n\n\n\n')
-    # print ('ITEM COUNT')
-    # print (item_count)
-    mod_patterns = {}
-    for key in patterns.keys():
-        for k, v in patterns[key].items():
-            mod_patterns[k] = v
-    patterns = mod_patterns
+    # mine transactions
+    if mining_method == 'apriori':
+        patterns, rules = apriori(train_transactions, min_support=SUPPORT_THRESH, min_confidence=1)
+        mod_patterns = {}
+        for key in patterns.keys():
+            for k, v in patterns[key].items():
+                mod_patterns[k] = v
+        patterns = mod_patterns
+    elif mining_method == 'ims':
+        patterns = imsapriori.find_patterns(train_transactions, SD=SD, LS=LS)
 
+    # set prices
     prices = {}
     for (itemset, support) in patterns.items():
         if len(itemset) == 1:
@@ -78,13 +65,13 @@ def parse_data(data_file_name, dataset_name):
                 int(100*PRICE_BRACKETS[price_idx][0]), int(100*PRICE_BRACKETS[price_idx][1]))/100.0
             prices[itemset[0]] = price
     
+    # format data
+    # TODO: Possible issue of not assigning price to every single
+    #       item. Change ifever it causes problem
     data = {}
     for (itemset, support) in patterns.items():
         if len(itemset) > K_FOR_KUI_IDX:
             continue
-        # price_idx = random.randint(0, len(PRICE_BRACKETS) - 1)
-        # price = random.randint(
-        #     int(100*PRICE_BRACKETS[price_idx][0]), int(100*PRICE_BRACKETS[price_idx][1]))/100.0
         sum_price = 0
         for item in itemset:
             sum_price += prices[item]
@@ -123,9 +110,4 @@ def parse_ch_dict(ch_file_name):
             path = line.strip().split(' ')
             item_path_dict[cur_item] = path
             is_item = 1
-    selected_keys = list(item_path_dict.keys())[1:100]
-    print ('DEBUG: print Concept Hierarchy')
-    for k in selected_keys:
-        print (k)
-        print (item_path_dict[k])
     return item_path_dict

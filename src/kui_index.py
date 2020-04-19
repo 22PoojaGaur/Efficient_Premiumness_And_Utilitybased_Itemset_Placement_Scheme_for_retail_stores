@@ -38,32 +38,6 @@ def _get_kui_idx_with_hybrid_approach(data, dranks):
     return kui
 
 
-def _get_kui_idx_without_diversity(data):
-    '''
-    data - dictionary input for data.
-        key -> tuple of itemsets
-        value -> tuple of (support, price)
-    '''
-    kui = {}
-    
-    # Initialize all levels for dict
-    for i in range(1, K_FOR_KUI_IDX+1):
-        kui[i] = []
-    
-    # Insert all itemsets in kui
-    for itemset in data.keys():
-        value = list([itemset]) + list(data[itemset]) + [data[itemset][0] * data[itemset][1]]
-        level = len(itemset)
-        if (len(itemset) > K_FOR_KUI_IDX):
-            continue
-        kui[level].append(tuple(value))
-
-    for level in range(1, K_FOR_KUI_IDX+1):
-        sorted(kui[level], key=lambda x: x[-2], reverse=True)
-        kui[level] = kui[level][0:LAMBDA]
-        
-    return kui
-
 def _get_kui_idx_with_diversity(data, dranks, method):
     '''
     data - dictionary input for data.
@@ -110,15 +84,11 @@ def get_kui_index(data, dranks=None, method=None):
         dranks: Dict. {itemset -> drank}
         method: string. 'R', 'D' or 'H'
     '''
-    
-    if dranks is not None:
-        print('CREATING KUI IDX WITH DIVERSITY')
-        if method == 'D' or method == 'R' or method == 'P' or method == 'S':
-            kui_idx = _get_kui_idx_with_diversity(data, dranks, method)
-        elif method == 'H':
-            kui_idx = _get_kui_idx_with_hybrid_approach(data, dranks)
-    else:
-        print ('CREATING KUI IDX WITHOUT DIVERSITY')
-        kui_idx = _get_kui_idx_without_diversity(data)
+    assert dranks is not None
+    assert method is not None
+    if method == 'D' or method == 'R' or method == 'P' or method == 'S':
+        kui_idx = _get_kui_idx_with_diversity(data, dranks, method)
+    elif method == 'H':
+        kui_idx = _get_kui_idx_with_hybrid_approach(data, dranks)
 
     return kui_idx

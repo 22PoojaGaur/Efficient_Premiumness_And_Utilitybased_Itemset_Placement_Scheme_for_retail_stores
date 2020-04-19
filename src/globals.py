@@ -1,11 +1,13 @@
 TRAIN_SPLIT = 0.2
 TEST_SPLIT = 1 - TRAIN_SPLIT
+MINING_METHOD = 'apriori'
 SUPPORT_THRESHOLD = 0.002
 SD = 1.1
 LS = 0.001
 PRICE_BRACKETS = [
     (0.01, 0.16), (0.17, 0.33), (0.34, 0.50), (0.51, 0.67),
     (0.68, 0.84), (0.85, 1)]
+METHOD = 'H'
 K_FOR_KUI_IDX = 6
 ALPHA = 0.2
 KUI_DRANK_THRESHOLD = 0.1 # note that change is made on '>=' threshold
