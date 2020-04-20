@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
     # Automating the write of graph essential files
     # list of each metric would be stored in pkl files
-    pkl_prefix = method + '_'
+    pkl_prefix = 'results/' + method + '_'
     metrics = {
         'num_slots': num_slots,
         'total_revenue_train': tr_train,
@@ -106,7 +106,9 @@ if __name__ == '__main__':
         if path.isfile(fname):
             data = pkl.load(open(fname, 'rb'))
             os.remove(fname)
+        else:
+            data = []
 
-            data.append(metrics[metric])
+        data.append(metrics[metric])
 
-            pkl.dump(data, open(fname, 'wb'))
+        pkl.dump(data, open(fname, 'wb'))
