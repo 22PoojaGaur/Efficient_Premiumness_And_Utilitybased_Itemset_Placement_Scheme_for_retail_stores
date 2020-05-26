@@ -73,9 +73,17 @@ def _get_kui_idx_with_diversity(data, dranks, method):
             kui[level] = sorted(kui[level], key=lambda x: x[-3], reverse=True)
         elif method == 'S':
             kui[level] = sorted(kui[level], key=lambda x: x[-4], reverse=True)
+        elif method == 'DR':
+            if (level == 1):
+                continue
+            kui[level] = sorted(kui[level], key=lambda x: x[-2] * x[-1], reverse=True)
         kui[level] = kui[level][0:LAMBDA]
 
     return kui
+
+
+def _get_kui_idx_with_diverse_net_revenue_approach(data, dranks, method):
+    pass
 
 def get_kui_index(data, dranks=None, method=None):
     '''
@@ -86,7 +94,7 @@ def get_kui_index(data, dranks=None, method=None):
     '''
     assert dranks is not None
     assert method is not None
-    if method == 'D' or method == 'R' or method == 'P' or method == 'S':
+    if method == 'D' or method == 'R' or method == 'P' or method == 'S' or method == 'DR':
         kui_idx = _get_kui_idx_with_diversity(data, dranks, method)
     elif method == 'H':
         kui_idx = _get_kui_idx_with_hybrid_approach(data, dranks)

@@ -1,4 +1,6 @@
 
+import globals
+
 def evaluate(slots, test_transactions):
     f = open('evaluation.txt', 'w')
     TOTAL_REVENUE = 0
@@ -6,18 +8,42 @@ def evaluate(slots, test_transactions):
     NUM_TEST_PATTERN_FOUND = 0
     TEST_DRANK_MEAN = 0
 
+    all_transactions = []
+    prices = {}
+    dranks = {}
+    for stype in range (0, len(slots)):
+        for (item, price, drank) in slots[stype]:
+            all_transactions.append(set(item))
+            prices[tuple(item)] = price
+            dranks[tuple(item)] = drank
+
+    NOT_IN_TEST = []
+
     for transaction in test_transactions:
-        NUM_TEST_TRANSACTION += 1
         t = tuple(transaction)
-        for stype in range(0,len(slots)):
-            for (item, price, drank) in slots[stype]:
-                #print ('comparing ' + ' '.join(set(item)) + ' and ' + ' '.join(set(t)))
-                if set(item) == set(t):
-                   # print ('MATCHED')
-                    TOTAL_REVENUE += price
-                    NUM_TEST_PATTERN_FOUND += 1
-                    TEST_DRANK_MEAN += drank
-                    break
+        if len(t) > globals.K_FOR_KUI_IDX:
+            continue
+        NUM_TEST_TRANSACTION += 1
+        if set(t) in all_transactions:
+            try:
+                TOTAL_REVENUE += prices[t]
+                NUM_TEST_PATTERN_FOUND += 1
+                TEST_DRANK_MEAN += dranks[t]
+            except KeyError:
+                continue
+
+        else:
+            NOT_IN_TEST.append(t)
+
+        # for stype in range(0,len(slots)):
+        #     for (item, price, drank) in slots[stype]:
+        #         #print ('comparing ' + ' '.join(set(item)) + ' and ' + ' '.join(set(t)))
+        #         if set(item) == set(t):
+        #            # print ('MATCHED')
+        #             TOTAL_REVENUE += price
+        #             NUM_TEST_PATTERN_FOUND += 1
+        #             TEST_DRANK_MEAN += drank
+        #             break
                 #print ('NOT MATCHED')
     f.write('\nTOTAL REVENUE OF TEST PATTERNS PLACED ->\n')
     f.write(str(TOTAL_REVENUE))
@@ -37,5 +63,8 @@ def evaluate(slots, test_transactions):
     print('\n\nMEAN DRANK OF TESTING ->\n')
     print(str(TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND)))
 
-    return (TOTAL_REVENUE, str(TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND)),
+    print ('NOT IN TESTING \n')
+    # print (NOT_IN_TEST)
+
+    return (TOTAL_REVENUE, TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND),
                 NUM_TEST_PATTERN_FOUND, NUM_TEST_TRANSACTION)

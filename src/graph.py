@@ -9,7 +9,7 @@
 
 # plt.plot(x,y)
 # plt.yticks([5,6,7])
-# plt.xlabel('num_slots')
+# plt.xlabel( num_slots')
 # plt.ylabel('ET')
 # plt.title('Graph for Execution time vs Number of slots')
 # plt.show()
@@ -316,12 +316,91 @@ import matplotlib.pyplot as plt
 # y5 = [1364.21, 3265.88, 3913.05, 5101.45, 6801.64, 7961.08, 9298.81, 9982.19, 10796.14, 11494.26, 12666.86  ]
 # plt.plot(x5, y5, label = "Diverse Revenue Based")
 
-x1 = [300, ]
-y1_train = []
-y1_test = []
-plt.plot(x3, y3, label = "Net Revenue")
+from cycler import cycler
 
-plt.xlabel('Number of Slots')
-plt.ylabel('Total Revenue')
+# For different dashed line uncomment below (in b/w)
+# monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
+#                 cycler('linestyle', ['-', '--', ':', '-.']))
+
+
+
+x_h = [70, 170, 370, 600, 900, 1500, 2000, 3000, 5000, 8000, 10000]
+y_h = [0.5238095238095238,
+ 0.5937499999999998,
+ 0.44444444444444464,
+ 0.40196078431372584,
+ 0.43783783783783775,
+ 0.46566791510611766,
+ 0.5074183976261121,
+ 0.5409836065573754,
+ 0.4984126984126987,
+ 0.5130562216893164,
+ 0.5187338501292]
+x_d = [70, 170, 370, 600, 900, 1500, 2000, 3000, 5000, 8000, 10000]
+y_d = [0.6666666666666666,
+ 0.6666666666666667,
+ 0.6666666666666664,
+ 0.6666666666666666,
+ 0.6666666666666669,
+ 0.6666666666666659,
+ 0.6666666666666663,
+ 0.6666666666666677,
+ 0.666666666666666,
+ 0.6666666666666631,
+ 0.6666666666666661]
+x_r = [70, 170, 370, 600, 900, 1500, 2000, 3000, 5000, 8000, 10000]
+y_r = [0.21568627450980396,
+ 0.2478632478632479,
+ 0.272030651340996,
+ 0.27186761229314427,
+ 0.27547495682210715,
+ 0.30716723549488045,
+ 0.3126204238921001,
+ 0.31923355025307226,
+ 0.3424153166421203,
+ 0.34952170713760267,
+ 0.35139676538542464]
+x_rh = [70, 170, 370, 600, 900, 1500, 2000, 3000, 5000, 8000, 10000]
+y_rh = [0.43749999999999994,
+ 0.4965277777777777,
+ 0.4163319946452476,
+ 0.36392914653784236,
+ 0.3701814058956915,
+ 0.3972222222222225,
+ 0.4334898278560247,
+ 0.46316038853352165,
+ 0.45300436388049703,
+ 0.4473942969518202,
+ 0.4516250944822387]
+
+# For using black line uncomment below 
+#plt.rc('axes', prop_cycle=monochrome)
+
+# For same solid line uncomment below (in b/w)
+monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
+                 cycler('linestyle', ['-', '-', '-', '-']))
+
+plt.rcParams['figure.figsize'] = (6, 4)
+# plt.rcParams['text.usetex'] = True
+plt.rcParams['font.family'] = 'serif'
+plt.rcParams['axes.labelsize'] = 'xx-large'
+plt.rcParams['xtick.labelsize'] = 'large'
+plt.rcParams['ytick.labelsize'] = 'large'
+plt.rcParams['lines.markersize'] = 5
+
+plt.rcParams['axes.prop_cycle'] = monochrome
+plt.rcParams['figure.autolayout'] = True
+
+plt.rcParams['lines.linewidth'] = 0.7
+
+plt.rcParams['legend.frameon'] = False
+
+plt.plot(x_r, y_r, label = "Net Revenue", marker="o", fillstyle='none')
+plt.plot(x_d, y_d, label = "Diversity based", marker="v")
+plt.plot(x_h, y_h, label = "Hybrid", marker="*", fillstyle='none')
+plt.plot(x_rh, y_rh, label = "NR + H combination", marker="D")
+
+plt.xlabel('Number of Slots' )
+plt.ylabel( 'Drank mean')
 plt.legend() 
 plt.show()
