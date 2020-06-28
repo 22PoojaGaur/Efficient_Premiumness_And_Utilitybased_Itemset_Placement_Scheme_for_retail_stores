@@ -33,7 +33,7 @@ ONE_ITEMSET_RATIO = 0.5
 ZIPF = 0.7
 
 # Rho - this is to try new revenue metric of - nr + (rho*d*nr)
-RHO = 2
+RHO = 1
 
 # slots for each size
 # 70
@@ -132,3 +132,12 @@ NUM_SLOTS = {0: 9000, 1: 1000, 2: 1000}
 NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
 
 NUM_SLOTS =  {0: 4500, 1: 4500, 2: 3000}
+NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+NUM_SLOTS = {0: 4500, 1: 4500, 2: 3000}
+NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+NUM_SLOTS = {0: 6500, 1: 6500, 2: 7000}
+NUM_SLOTS = {0: 7000, 1: 7000, 2: 8000}
+NUM_SLOTS = {0: 8000, 1: 8000, 2: 9000}
