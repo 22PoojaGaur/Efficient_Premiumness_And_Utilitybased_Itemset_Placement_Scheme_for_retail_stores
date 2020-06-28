@@ -25,6 +25,8 @@ def calculate_drank(patterns, ch_dict=None, ch_height=None):
         drank = (num_node_in_proj - (num_item_in_pat + h - 1)) / (
             (h-1)*(num_item_in_pat -1))
     except ZeroDivisionError as e:
+        print ("height", str(h-1))
+        print ("num items ", str(len(patterns)))
         drank = "NOT PROCESSED"
 
     return drank

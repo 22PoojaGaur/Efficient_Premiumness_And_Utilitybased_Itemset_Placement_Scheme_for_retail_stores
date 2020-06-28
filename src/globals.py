@@ -10,28 +10,30 @@ LS = 0.001
 PRICE_BRACKETS = [
     (0.01, 0.16), (0.17, 0.33), (0.34, 0.50), (0.51, 0.67),
     (0.68, 0.84), (0.85, 1)]
-METHOD = 'R'
-# This will change the placement scheme to 
+METHOD = 'RDR'
+# This will change the placement scheme to
 # place slot with higher per_slot_drank
 # in case of D and remain same in case of others
 SEPARATE_PLACEMENT_SCHEMES = True
 
 # below are specifically for RH (similar to HC-HCHD) method.
-R_RATIO = 0.1
-H_RATIO = 0.9
+R_RATIO = 1.0
+H_RATIO = 0
 
 K_FOR_KUI_IDX = 4
 ALPHA = 0.7
 KUI_DRANK_THRESHOLD = 0.1 # note that change is made on '>=' threshold
-LAMBDA = 5000
+LAMBDA = 10000
 NUM_TYPE_SLOTS = 3
 # NUM_SLOTS is a dictionary to give num slots in each slot type
 # so number of keys in NUM_SLOTS is equal to NUM_TYPE_SLOTS
 # NUM_SLOTS = { 0: 220, 1: 400, 2: 450 }
 # Max ration of a slot to be filled by one itemsets
-ONE_ITEMSET_RATIO = 0.5 
+ONE_ITEMSET_RATIO = 0.5
 ZIPF = 0.7
 
+# Rho - this is to try new revenue metric of - nr + (rho*d*nr)
+RHO = 1
 
 # slots for each size
 # 70
@@ -49,7 +51,7 @@ NUM_SLOTS =  { 0: 20, 1: 25, 2: 25 }
 # 470
 # NUM_SLOTS =  { 0: 120, 1: 150, 2: 200 }
 
-# 570 
+# 570
 # NUM_SLOTS =  { 0: 120, 1: 200, 2: 250 }
 
 # 670
@@ -122,3 +124,11 @@ NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
 
 # 10000
 # NUM_SLOTS = {0: 3500, 1: 3500, 2: 3000}
+
+# 18000
+NUM_SLOTS = {0: 9000, 1: 1000, 2: 1000}
+
+# # 16000
+NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+
+NUM_SLOTS =  {0: 4500, 1: 4500, 2: 3000}

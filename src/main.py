@@ -9,7 +9,7 @@ from ARC import get_arc
 from slots import get_slots
 from PRIP import PRIP
 from DPRIP import DPRIP
-from evaluate import evaluate
+from evaluate import evaluate_new
 import globals
 
 import _pickle as pkl
@@ -67,9 +67,23 @@ if __name__ == '__main__':
             'R': kui_R,
             'H': kui_H
         }
+    elif method == 'RDR':
+        kui_R = get_kui_index(train_data, dranks=dranks, method='R')
+        kui_DR = get_kui_index(train_data, dranks=dranks, method='DR')
+        kui_idx = {
+            'R': kui_R,
+            'H': kui_DR
+        }
     else:
         kui_idx = get_kui_index(train_data, dranks=dranks, method=method)
-        
+     
+    # for (k, v) in kui_idx.items():
+    #     print ("Length level %d", k)
+    #     l = 0
+    #     for node in v:
+    #         l += len(node[0])
+    #     print (l)
+   
     
     start = time.time()
     # get empty slots
@@ -80,7 +94,14 @@ if __name__ == '__main__':
 
     time = end - start
 
-    (tr_test, dr_test, place_test, num_total_test) = evaluate(slots, test_transaction)
+    for level in range(0, len(slots)):
+        #print ("slot level %d", level)
+        l = 0
+        for node in slots[level]:
+            l += len(node[0])
+        #print (l)
+
+    (tr_test, dr_test, place_test, num_total_test) = evaluate_new(slots, test_transaction)
 
     output = open('prip_slots_%d.pkl' % type_slots, 'wb')
     pkl.dump(slots, output)
@@ -112,3 +133,5 @@ if __name__ == '__main__':
         data.append(metrics[metric])
 
         pkl.dump(data, open(fname, 'wb'))
+
+    

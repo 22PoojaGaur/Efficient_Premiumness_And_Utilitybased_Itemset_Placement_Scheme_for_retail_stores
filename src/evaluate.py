@@ -1,5 +1,47 @@
-
+import random
 import globals
+
+def evaluate_new(slots, test_transactions):
+    TOTAL_REVENUE = 0
+    NUM_TEST_TRANSACTION = 0
+    NUM_TEST_PATTERN_FOUND = 0
+    TEST_DRANK_MEAN = 0
+
+    for transaction in test_transactions:
+        itemset = tuple(transaction)
+        NUM_TEST_TRANSACTION += 1
+
+        for stype in range (0, len(slots)):
+            for (item, price, drank) in slots[stype]:
+                if tuple(item) == itemset:
+                    prob_value = random.randint(0, 1000)
+                    if stype == 2 and prob_value > 6000:
+                            TOTAL_REVENUE += price
+                            NUM_TEST_PATTERN_FOUND += 1
+                            TEST_DRANK_MEAN += drank
+
+                    elif stype == 1 and prob_value > 8000:
+                            TOTAL_REVENUE += price
+                            NUM_TEST_PATTERN_FOUND += 1
+                            TEST_DRANK_MEAN += drank
+
+                    elif stype ==0 :
+                        TOTAL_REVENUE += price
+                        NUM_TEST_PATTERN_FOUND += 1
+                        TEST_DRANK_MEAN += drank
+
+    print('\nTOTAL REVENUE OF TEST PATTERNS PLACED ->\n')
+    print(str(TOTAL_REVENUE))
+    print('\n\nNUMBER OF TEST PATTERNS PLACED ->\n')
+    print(str(NUM_TEST_PATTERN_FOUND))
+    print('\n\nTOTAL NUMBER OF TEST PATTERNS ->\n')
+    print(str(NUM_TEST_TRANSACTION))
+    print('\n\nMEAN DRANK OF TESTING ->\n')
+    print(str(TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND)))
+
+    return (TOTAL_REVENUE, TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND),
+                NUM_TEST_PATTERN_FOUND, NUM_TEST_TRANSACTION)
+
 
 def evaluate(slots, test_transactions):
     f = open('evaluation.txt', 'w')

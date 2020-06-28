@@ -4,6 +4,7 @@ Runs DPRIP algorithm and returns slots.
 '''
 from PRIP import PRIP
 import globals
+import random
 
 TOTAL_SLOTS = 0
 TOTAL_REVENUE = 0
@@ -42,14 +43,21 @@ def insert_one_itemset(slots, top_kui_per_slot_rev, top_kui_ptrs, kui_idx, CAS, 
         # print (top_kui_per_slot_rev)
         
         if top_kui_node[0] not in placed:
+            node = kui_idx[top[0]][top_kui_ptrs[top[0]]]
+            price = node[2]
+            if method == 'DR':
+                #print ('DR', str(node[2]))
+                price = node[2]
+                
             slots[stype].append((
-                kui_idx[top[0]][top_kui_ptrs[top[0]]][0],
-                kui_idx[top[0]][top_kui_ptrs[top[0]]][2], 
-                kui_idx[top[0]][top_kui_ptrs[top[0]]][-1]))
+                node[0],
+                price, 
+                node[-1]))
 
             DRANK_MEAN += kui_idx[top[0]][top_kui_ptrs[top[0]]][-1]
             TOTAL_PLACED += 1
-            TOTAL_REVENUE += (kui_idx[top[0]][top_kui_ptrs[top[0]]][-2] * 1.0)/(1+stype)
+            factor = 1
+            TOTAL_REVENUE += (kui_idx[top[0]][top_kui_ptrs[top[0]]][-2] * 1.0) * factor
             CAS[stype] -= len(kui_idx[top[0]][top_kui_ptrs[top[0]]][0])
         
             found = True
@@ -145,6 +153,7 @@ def _RHDPRIP(data_dict, kui_R, kui_H, dranks, slot_sizes):
 
     pick_r_or_h = list(['R']*int(globals.R_RATIO * 10))
     pick_r_or_h.extend(['H']*int(globals.H_RATIO * 10))
+    random.shuffle(pick_r_or_h)
     kui_to_pick_ptr = 0
 
     for stype in range(0, slot_types):
@@ -171,7 +180,7 @@ def _RHDPRIP(data_dict, kui_R, kui_H, dranks, slot_sizes):
 
 
 def DPRIP(data_dict, kui_idx, dranks, slot_sizes, method='INDIVIDUAL'):
-    if method == 'RH':
+    if method == 'RH' or method == 'RDR':
         return _RHDPRIP(data_dict, kui_idx['R'], kui_idx['H'], dranks, slot_sizes)
     else:
         return _DPRIP(data_dict, kui_idx, dranks, slot_sizes, method)
