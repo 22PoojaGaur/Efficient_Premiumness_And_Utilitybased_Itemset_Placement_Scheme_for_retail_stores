@@ -84,7 +84,6 @@ if __name__ == '__main__':
     #         l += len(node[0])
     #     print (l)
    
-    
     start = time.time()
     # get empty slots
     slots = get_slots(num_slots, type_slots, zipf)
@@ -101,13 +100,17 @@ if __name__ == '__main__':
             l += len(node[0])
         #print (l)
 
-    (tr_test, dr_test, place_test, num_total_test) = evaluate_new(slots, test_transaction)
+    (tr_test, dr_test, place_test, num_total_test, diversification) = evaluate_new(slots, test_transaction)
 
     output = open('prip_slots_%d.pkl' % type_slots, 'wb')
     pkl.dump(slots, output)
     output.close()
 
     # Automating the write of graph essential files
+
+    # for stype in range(0, len(slots)):
+    #     print ("TOP 10 slots of stype - ", stype)
+    #     print (slots[stype][0:10])
     # list of each metric would be stored in pkl files
     pkl_prefix = 'results/' + method + '_'
     metrics = {
@@ -118,7 +121,8 @@ if __name__ == '__main__':
         'num_total_test': num_total_test,
         'total_revenue_test': tr_test,
         'drank_mean_test': dr_test,
-        'train_time': time
+        'train_time': time,
+        'diversification': diversification
     }
 
     for metric in metrics.keys():
@@ -133,5 +137,33 @@ if __name__ == '__main__':
         data.append(metrics[metric])
 
         pkl.dump(data, open(fname, 'wb'))
-
     
+    # import pprint
+    # from itertools import islice
+    # from collections import OrderedDict
+
+    # filter_dict = {}
+    # frequency = {}
+    # for (key, value) in dict(sorted(
+    #     dranks.items(), key=lambda k: k[1], reverse=True)).items():
+
+    #     if len(key) == 3:
+    #         filter_dict[key] = value
+
+    #         if value not in frequency:
+    #             frequency[value] = 0
+    #         frequency[value] += 1
+
+    #--------------------------------------------
+    # klist = kui_idx[3][0:20]
+    # fdict = OrderedDict()
+    # freq = {}
+    # for key in klist:
+    #     itemset,price,frequency,nr,drank = key
+    #     fdict[itemset] = (dranks[itemset], nr)
+    #     if dranks[itemset] not in freq:
+    #         freq[dranks[itemset]] = 0
+    #     freq[dranks[itemset]] += 1
+    # pprint.pprint(fdict)
+    # pprint.pprint(freq)
+   # pprint.pprint(klist)

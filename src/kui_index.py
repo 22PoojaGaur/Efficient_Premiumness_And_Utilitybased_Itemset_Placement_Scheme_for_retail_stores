@@ -59,15 +59,22 @@ def _get_kui_idx_with_diversity(data, dranks, method):
     # Insert all itemsets in kui
     for itemset in data.keys():
         value = list([itemset]) + list(data[itemset]) + [data[itemset][0] * data[itemset][1]] + [dranks[itemset]]
-        if method == 'DR' and len(itemset) != 1:
-            value = list([itemset]) + list(data[itemset]) + [(data[itemset][0] * data[itemset][1])] + [dranks[itemset]]
+        #----------- same as above--------------
+        # if method == 'DR' and len(itemset) != 1:
+        #     value = list([itemset]) + list(data[itemset]) + [(data[itemset][0] * data[itemset][1])] + [dranks[itemset]]
+        # if method == "R":
+        #     if value[-1] > 0.25:
+        #         continue
+        # if method == "D":
+        #     if value[-2] > 30:
+        #         continue
         level = len(itemset)
         if level > K_FOR_KUI_IDX:
             continue
         kui[level].append(tuple(value))
 
     for level in range(1, K_FOR_KUI_IDX+1):
-        if method == 'R':
+        if method == 'R' or method == 'DIV':
             kui[level] = sorted(kui[level], key=lambda x: x[-2], reverse=True)
         elif method == 'D':
             kui[level] = sorted(kui[level], key=lambda x: x[-1], reverse=True)
@@ -79,7 +86,10 @@ def _get_kui_idx_with_diversity(data, dranks, method):
             if (level == 1):
                 continue
             kui[level] = sorted(kui[level], key=lambda x: x[-2] + (RHO*x[-2]*x[-1]), reverse=True)
-        kui[level] = kui[level][0:LAMBDA]
+        if method == 'DIV':
+            kui[level] = kui[level][0:2*LAMBDA]
+        else:
+            kui[level] = kui[level][0:LAMBDA]
 
     return kui
 
@@ -96,7 +106,7 @@ def get_kui_index(data, dranks=None, method=None):
     '''
     assert dranks is not None
     assert method is not None
-    if method == 'D' or method == 'R' or method == 'P' or method == 'S' or method == 'DR':
+    if method == 'D' or method == 'R' or method == 'P' or method == 'S' or method == 'DR' or method == 'DIV' or method == 'HRD':
         kui_idx = _get_kui_idx_with_diversity(data, dranks, method)
     elif method == 'H':
         kui_idx = _get_kui_idx_with_hybrid_approach(data, dranks)

@@ -5,11 +5,25 @@ Runs DPRIP algorithm and returns slots.
 from PRIP import PRIP
 import globals
 import random
+import copy
 
 TOTAL_SLOTS = 0
 TOTAL_REVENUE = 0
 DRANK_MEAN = 0
 TOTAL_PLACED = 0
+
+
+def calculate_diversification(itemsets):
+    ''' Calculates diversification of itemsets using Parul's approach'''
+    assert type(itemsets) == list
+
+    unique_items = set()
+
+    for itemset in itemsets:
+        for item in itemset:
+            unique_items.add(item)
+
+    return len(unique_items) / len(itemsets)
 
 
 # takes advantage of the fact that everything is passed
@@ -66,7 +80,7 @@ def insert_one_itemset(slots, top_kui_per_slot_rev, top_kui_ptrs, kui_idx, CAS, 
 
         top_kui_ptrs[top[0]] += 1
 
-        # if all itemstes of certain sized already placed
+        # if all itemsets of certain sized already placed
         if top_kui_ptrs[top[0]] >= len(kui_idx[top[0]]):
             top_kui_per_slot_rev[top[0]] = -1
         else:
@@ -97,7 +111,7 @@ def _DPRIP(deta_dict, kui_idx, dranks, slot_sizes, method):
     top_kui_per_slot_rev = [0]*(len(kui_idx.keys())+1)
     for i in kui_idx.keys():
         try:
-            if method == 'D' and globals.SEPARATE_PLACEMENT_SCHEMES == True:
+            if method == 'D':
                 top_kui_per_slot_rev[i] = (kui_idx[i][top_kui_ptrs[i]][-1])/float(i)
             else:
                 top_kui_per_slot_rev[i] = (kui_idx[i][top_kui_ptrs[i]][-2])/float(i)
@@ -179,8 +193,102 @@ def _RHDPRIP(data_dict, kui_R, kui_H, dranks, slot_sizes):
                 DRANK_MEAN/float(TOTAL_PLACED))
 
 
-def DPRIP(data_dict, kui_idx, dranks, slot_sizes, method='INDIVIDUAL'):
+def _DIVERSIFICATION(data_dict, kui_idx, slot_sizes, method):
+    TOTAL_SLOTS = 0
+    TOTAL_REVENUE = 0
+    slots = []
+    #kUI = copy.deepcopy(kui_idx)
+    kUI = {}
+
+    A = 0.2
+
+    # NRl - a*NRl
+    NRl = 0
+
+    for i in kui_idx.keys():
+        if i not in kUI:
+            kUI[i] = []
+
+        for j in kui_idx[i]:
+            # appending NR at the end, has to remove it later
+            kUI[i].append((j[0], j[2], j[-1], j[-2]))
+
+    for slot_size in slot_sizes:
+        lbd = len(slot_size)
+
+        selected_list = []
+        max_div = -1
+
+        NRl = 0
+
+        # fill 30% by 4 itemsets, 30% by 3 itemsets, 40% by 2 itemsets
+        num_4 = int(((lbd * 30) / 100) / 4) # because each itemset would take 4 space
+        num_3 = int(((lbd * 30) / 100) / 3) # because each itemset would take 3 space
+        num_2 = int(((lbd * 40) / 100) / 2) # because each itemset would take 2 space
+
+        for i in range (0, num_2):
+            NRl += kui_idx[2][i][-2]
+
+        for i in range (0, num_3):
+            NRl += kui_idx[3][i][-2]
+
+        for i in range (0, num_4):
+            NRl += kui_idx[4][i][-2]
+
+        for i in range(0, 100):
+            # suffle and get diversification and keep with max diversification
+            # lbd = 2*num_2 + 3*num_3 + 4*num_4
+            short_list = list()
+            short_list.extend(random.choices(kUI[2][:2*lbd], k=num_2))
+            short_list.extend(random.choices(kUI[3][:2*lbd], k=num_3))
+            short_list.extend(random.choices(kUI[4][:2*lbd], k=num_4))
+            
+            #print (short_list)
+            current_div = calculate_diversification(short_list)
+
+            sum_revenue = 0
+            for idx, i in enumerate(short_list):
+                sum_revenue += i[-1]
+                short_list[idx] = short_list[idx][:-1]
+            
+            # DIV METHOD
+            if current_div > max_div and method == 'DIV':
+                max_div = current_div
+                selected_list = short_list
+
+            # HRD METHOD
+            if current_div > max_div and sum_revenue >= NRl - A*NRl and method == 'HRD':
+                max_div = current_div
+                selected_list = short_list
+
+        slots.append(selected_list)
+
+        print ('selected list ') 
+        print (selected_list)
+
+        # remove the items that have been placed
+        for item in selected_list:
+            print ( '\n\n\n\ PRINT \n\n')
+            print ( item)
+            try:
+                kUI[len(item[0])].remove(item)
+            except:
+                pass
+            TOTAL_SLOTS += len(item[0])
+            TOTAL_REVENUE += item[1]
+        
+    print ('Number of Shelves ' + str(len(slots)))
+    print (str(len(slots[0])))
+    print (str(len(slots[1])))
+    print (str(len(slots[2])))
+    
+    return (slots, TOTAL_SLOTS, TOTAL_REVENUE, 0)
+
+
+def DPRIP(data_dict, kui_idx, dranks, slot_sizes, method='R'):
     if method == 'RH' or method == 'RDR':
         return _RHDPRIP(data_dict, kui_idx['R'], kui_idx['H'], dranks, slot_sizes)
+    elif method == 'DIV' or method == 'HRD':
+        return _DIVERSIFICATION(data_dict, kui_idx, slot_sizes, method)
     else:
         return _DPRIP(data_dict, kui_idx, dranks, slot_sizes, method)

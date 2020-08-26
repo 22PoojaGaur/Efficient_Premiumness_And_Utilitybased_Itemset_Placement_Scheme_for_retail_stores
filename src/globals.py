@@ -18,13 +18,13 @@ SEPARATE_PLACEMENT_SCHEMES = True
 
 # below are specifically for RH (similar to HC-HCHD) method.
 R_RATIO = 1.0
-H_RATIO = 0
+H_RATIO = 0.0
 
 K_FOR_KUI_IDX = 4
 ALPHA = 0.7
 KUI_DRANK_THRESHOLD = 0.1 # note that change is made on '>=' threshold
-LAMBDA = 10000
-NUM_TYPE_SLOTS = 3
+LAMBDA = 5000
+NUM_TYPE_SLOTS = 1
 # NUM_SLOTS is a dictionary to give num slots in each slot type
 # so number of keys in NUM_SLOTS is equal to NUM_TYPE_SLOTS
 # NUM_SLOTS = { 0: 220, 1: 400, 2: 450 }
@@ -33,11 +33,11 @@ ONE_ITEMSET_RATIO = 0.5
 ZIPF = 0.7
 
 # Rho - this is to try new revenue metric of - nr + (rho*d*nr)
-RHO = 2
+RHO = 5
 
 # slots for each size
 # 70
-NUM_SLOTS =  { 0: 20, 1: 25, 2: 25 }
+#NUM_SLOTS =  { 0: 20, 1: 25, 2: 25 }
 
 # 170
 # NUM_SLOTS =  { 0: 50, 1: 60, 2: 60 }
@@ -114,21 +114,106 @@ NUM_SLOTS =  { 0: 20, 1: 25, 2: 25 }
 # NUM_SLOTS = {0: 150, 1: 150, 2: 200}
 
 # # 2000
-# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+#NUM_SLOTS = {0: 2000}
 
 # # 4000
 # NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
 
 # # 8000
-NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
 
-# 10000
-# NUM_SLOTS = {0: 3500, 1: 3500, 2: 3000}
+# # 10000
+# # NUM_SLOTS = {0: 3500, 1: 3500, 2: 3000}
 
-# 18000
-NUM_SLOTS = {0: 9000, 1: 1000, 2: 1000}
+# # 18000
+# NUM_SLOTS = {0: 9000, 1: 1000, 2: 1000}
 
-# # 16000
-NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+# # # 16000
+# NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
 
-NUM_SLOTS =  {0: 4500, 1: 4500, 2: 3000}
+# NUM_SLOTS =  {0: 4500, 1: 4500, 2: 3000}
+
+#---------------------------
+
+#NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+NUM_SLOTS = {0: 12000}
+# # NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+# # NUM_SLOTS = {0: 6500, 1: 6500, 2: 7000}
+# # NUM_SLOTS = {0: 7000, 1: 7000, 2: 8000}
+# # NUM_SLOTS = {0: 8000, 1: 8000, 2: 9000}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+#NUM_SLOTS = {0: 4500, 1: 4500, 2: 3000}
+# NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+# NUM_SLOTS = {0: 6500, 1: 6500, 2: 7000}
+# NUM_SLOTS = {0: 7000, 1: 7000, 2: 8000}
+# NUM_SLOTS = {0: 8000, 1: 8000, 2: 9000}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+# NUM_SLOTS = {0: 4500, 1: 4500, 2: 3000}
+# NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+# NUM_SLOTS = {0: 6500, 1: 6500, 2: 7000}
+# NUM_SLOTS = {0: 7000, 1: 7000, 2: 8000}
+# NUM_SLOTS = {0: 8000, 1: 8000, 2: 9000}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+# NUM_SLOTS = {0: 4500, 1: 4500, 2: 3000}
+# NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+# NUM_SLOTS = {0: 6500, 1: 6500, 2: 7000}
+# NUM_SLOTS = {0: 7000, 1: 7000, 2: 8000}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+# NUM_SLOTS = {0: 4500, 1: 4500, 2: 3000}
+# NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+# NUM_SLOTS = {0: 4500, 1: 4500, 2: 3000}
+# NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+# NUM_SLOTS = {0: 6500, 1: 6500, 2: 7000}
+# NUM_SLOTS = {0: 7000, 1: 7000, 2: 8000}
+# NUM_SLOTS = {0: 8000, 1: 8000, 2: 9000}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+# NUM_SLOTS = {0: 4500, 1: 4500, 2: 3000}
+# NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+# NUM_SLOTS = {0: 6500, 1: 6500, 2: 7000}
+# NUM_SLOTS = {0: 7000, 1: 7000, 2: 8000}
+# NUM_SLOTS = {0: 8000, 1: 8000, 2: 9000}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 600, 1: 250, 2: 150}
+# NUM_SLOTS = {0: 700, 1: 600, 2: 700}
+# NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
+# NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
+# NUM_SLOTS = {0: 4500, 1: 4500, 2: 3000}
+# NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
+# NUM_SLOTS = {0: 6500, 1: 6500, 2: 7000}
+# NUM_SLOTS = {0: 7000, 1: 7000, 2: 8000}
+# NUM_SLOTS = {0: 8000, 1: 8000, 2: 9000

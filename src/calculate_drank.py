@@ -17,17 +17,17 @@ def calculate_drank(patterns, ch_dict=None, ch_height=None):
     if ch_dict is None or ch_height is None:
         raise ValueError
 
-    num_node_in_proj = calculate_nodes_in_projection(patterns, ch_dict=ch_dict)
+    num_node_in_proj = calculate_nodes_in_projection(patterns, ch_dict=ch_dict)-1
     num_item_in_pat = len(patterns)
-    h = ch_height
+    h = ch_height-1
 
     try:
         drank = (num_node_in_proj - (num_item_in_pat + h - 1)) / (
             (h-1)*(num_item_in_pat -1))
     except ZeroDivisionError as e:
-        print ("height", str(h-1))
-        print ("num items ", str(len(patterns)))
-        drank = "NOT PROCESSED"
+        # print ("height", str(h-1))
+        # print ("num items ", str(len(patterns)))
+        drank = 0
 
     return drank
 
@@ -52,3 +52,4 @@ def get_dranks(freq_patterns, item_path_dict):
             print('Drank calculation SKIPPED for ' + ' '.join(patterns))
 
     return dranks
+    #print (sorted(dranks.items, key=lambda x: x[1], reverse=True)

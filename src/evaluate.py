@@ -1,9 +1,22 @@
 import random
 import globals
 
+def calculate_diversification(itemsets):
+    ''' Calculates diversification of itemsets using Parul's approach'''
+    assert type(itemsets) == list
+
+    unique_items = set()
+
+    for itemset in itemsets:
+        for item in itemset:
+            unique_items.add(item)
+
+    return len(unique_items) / len(itemsets)
+
+
 def evaluate_new(slots, test_transactions):
     TOTAL_REVENUE = 0
-    NUM_TEST_TRANSACTION = 0
+    NUM_TEST_TRANSACTION = 0 
     NUM_TEST_PATTERN_FOUND = 0
     TEST_DRANK_MEAN = 0
 
@@ -15,12 +28,12 @@ def evaluate_new(slots, test_transactions):
             for (item, price, drank) in slots[stype]:
                 if tuple(item) == itemset:
                     prob_value = random.randint(0, 1000)
-                    if stype == 2 and prob_value > 6000:
+                    if stype == 2 and prob_value < 600:
                             TOTAL_REVENUE += price
                             NUM_TEST_PATTERN_FOUND += 1
                             TEST_DRANK_MEAN += drank
 
-                    elif stype == 1 and prob_value > 8000:
+                    elif stype == 1 and prob_value < 800:
                             TOTAL_REVENUE += price
                             NUM_TEST_PATTERN_FOUND += 1
                             TEST_DRANK_MEAN += drank
@@ -37,10 +50,19 @@ def evaluate_new(slots, test_transactions):
     print('\n\nTOTAL NUMBER OF TEST PATTERNS ->\n')
     print(str(NUM_TEST_TRANSACTION))
     print('\n\nMEAN DRANK OF TESTING ->\n')
-    print(str(TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND)))
+    drank_mean = 0
+    if NUM_TEST_PATTERN_FOUND != 0:
+        drank_mean = TEST_DRANK_MEAN / float(NUM_TEST_PATTERN_FOUND)
+    #print(str(TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND)))
 
-    return (TOTAL_REVENUE, TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND),
-                NUM_TEST_PATTERN_FOUND, NUM_TEST_TRANSACTION)
+    all_transactions = []
+
+    for stype in range(len(slots)):
+        for slot in slots[stype]:
+            all_transactions.append(slot[0])
+    diversification = calculate_diversification(all_transactions)
+
+    return (TOTAL_REVENUE, drank_mean, NUM_TEST_PATTERN_FOUND, NUM_TEST_TRANSACTION, diversification)
 
 
 def evaluate(slots, test_transactions):
@@ -105,8 +127,9 @@ def evaluate(slots, test_transactions):
     print('\n\nMEAN DRANK OF TESTING ->\n')
     print(str(TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND)))
 
+
     print ('NOT IN TESTING \n')
     # print (NOT_IN_TEST)
 
     return (TOTAL_REVENUE, TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND),
-                NUM_TEST_PATTERN_FOUND, NUM_TEST_TRANSACTION)
+                NUM_TEST_PATTERN_FOUND, NUM_TEST_TRANSACTION, diversification)
