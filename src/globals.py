@@ -10,7 +10,7 @@ LS = 0.001
 PRICE_BRACKETS = [
     (0.01, 0.16), (0.17, 0.33), (0.34, 0.50), (0.51, 0.67),
     (0.68, 0.84), (0.85, 1)]
-METHOD = 'RDR'
+METHOD = 'D'
 # This will change the placement scheme to
 # place slot with higher per_slot_drank
 # in case of D and remain same in case of others
@@ -139,7 +139,7 @@ RHO = 5
 # NUM_SLOTS = {0: 700, 1: 600, 2: 700}
 # NUM_SLOTS = {0: 1000, 1: 1500, 2: 1500}
 # NUM_SLOTS = {0: 3000, 1: 3000, 2: 2000}
-NUM_SLOTS = {0: 12000}
+NUM_SLOTS = {0: 1000}
 # # NUM_SLOTS = {0: 5500, 1: 5500, 2: 5000}
 # # NUM_SLOTS = {0: 6500, 1: 6500, 2: 7000}
 # # NUM_SLOTS = {0: 7000, 1: 7000, 2: 8000}

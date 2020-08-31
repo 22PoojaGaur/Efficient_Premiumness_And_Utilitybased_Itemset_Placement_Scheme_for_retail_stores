@@ -52,6 +52,8 @@ def _get_kui_idx_with_diversity(data, dranks, method):
     '''
     kui = {}
 
+    TRAIN_TOP_REVENUE = {}
+
     # Initialize all levels for dict
     for i in range(1, K_FOR_KUI_IDX+1):
         kui[i] = []
@@ -77,7 +79,7 @@ def _get_kui_idx_with_diversity(data, dranks, method):
         if method == 'R' or method == 'DIV':
             kui[level] = sorted(kui[level], key=lambda x: x[-2], reverse=True)
         elif method == 'D':
-            kui[level] = sorted(kui[level], key=lambda x: x[-1], reverse=True)
+            kui[level] = sorted(kui[level], key=lambda x: (-1*x[-1], x[-2]))
         elif method == 'P':
             kui[level] = sorted(kui[level], key=lambda x: x[-3], reverse=True)
         elif method == 'S':
@@ -90,6 +92,11 @@ def _get_kui_idx_with_diversity(data, dranks, method):
             kui[level] = kui[level][0:2*LAMBDA]
         else:
             kui[level] = kui[level][0:LAMBDA]
+
+    # import pprint
+    # if method == 'R':
+    #     print ('KUI level 2')
+    #     pprint.pprint(kui[2], width = 1)
 
     return kui
 

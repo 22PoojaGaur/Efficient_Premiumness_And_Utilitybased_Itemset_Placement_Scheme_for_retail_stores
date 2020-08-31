@@ -12,6 +12,9 @@ TOTAL_REVENUE = 0
 DRANK_MEAN = 0
 TOTAL_PLACED = 0
 
+IDX = 0
+TOP_REVENUE = {}
+
 
 def calculate_diversification(itemsets):
     ''' Calculates diversification of itemsets using Parul's approach'''
@@ -42,8 +45,11 @@ def insert_one_itemset(slots, top_kui_per_slot_rev, top_kui_ptrs, kui_idx, CAS, 
             # ignoring single itemsets
             if idx == 0 or idx == 1:
                 continue
-            if val > top[1]:
-                top = [idx, val]
+            if val*idx > top[1]:
+                top = [idx, val*idx]
+
+            # if val > top[1]:
+            #     top = [idx, val]
 
         if top[0] is None:
             print ('NOT ENOUGH ITEMSETS')
@@ -68,6 +74,19 @@ def insert_one_itemset(slots, top_kui_per_slot_rev, top_kui_ptrs, kui_idx, CAS, 
                 price, 
                 node[-1]))
 
+            global IDX 
+            IDX += 1            
+            if IDX-1 in TOP_REVENUE.keys():
+                TOP_REVENUE[IDX] = (
+                    TOP_REVENUE[IDX-1][0] + node[-2],
+                    node[0]
+                )
+            else:
+                TOP_REVENUE[IDX] = (
+                    node[-2],
+                    node[0]
+                )
+
             DRANK_MEAN += kui_idx[top[0]][top_kui_ptrs[top[0]]][-1]
             TOTAL_PLACED += 1
             factor = 1
@@ -84,10 +103,10 @@ def insert_one_itemset(slots, top_kui_per_slot_rev, top_kui_ptrs, kui_idx, CAS, 
         if top_kui_ptrs[top[0]] >= len(kui_idx[top[0]]):
             top_kui_per_slot_rev[top[0]] = -1
         else:
-            if globals.SEPARATE_PLACEMENT_SCHEMES and method == 'D':
-                top_kui_per_slot_rev[top[0]] = kui_idx[top[0]][top_kui_ptrs[top[0]]][-1]/float(top[0])
-            else:
-                top_kui_per_slot_rev[top[0]] = kui_idx[top[0]][top_kui_ptrs[top[0]]][-2]/float(top[0])
+            # if globals.SEPARATE_PLACEMENT_SCHEMES and method == 'D':
+            #     top_kui_per_slot_rev[top[0]] = kui_idx[top[0]][top_kui_ptrs[top[0]]][-1]/float(top[0])
+            # else:
+            top_kui_per_slot_rev[top[0]] = kui_idx[top[0]][top_kui_ptrs[top[0]]][-2]/float(top[0])
         
         if found:
             break
@@ -131,6 +150,11 @@ def _DPRIP(deta_dict, kui_idx, dranks, slot_sizes, method):
     # print (TOTAL_PATTERNS)
     print ('SLOTS TOTAL')
     print (TOTAL_SLOTS)
+
+
+    print ("TOTAL REVENUE")
+    import pprint
+    pprint.pprint(TOP_REVENUE, width=1)
     
     return (slots, TOTAL_SLOTS, TOTAL_REVENUE,
                 DRANK_MEAN/float(TOTAL_PLACED))

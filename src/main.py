@@ -37,6 +37,8 @@ def get_data():
     if path.isfile('dataset.pkl') and path.isfile('test.pkl'):
         train = pkl.load(open('dataset.pkl', 'rb'))
         test = pkl.load(open('test.pkl', 'rb'))
+        import itertools
+        train = dict(itertools.islice(train.items(), 1000))
     else:
         (train, test) = parse_data(DATA_FNAME)
         pkl.dump(train_data_dict, open('dataset.pkl', 'wb'))
