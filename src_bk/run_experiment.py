@@ -48,7 +48,7 @@ NUM_SLOTS = OrderedDict(NUM_SLOTS)
 bash_cmd = 'python3 main.py -d ../data/grocery_transactions.txt -ch_path ../data/grocery1_ch.txt'
 
 # create directory to save experiment details
-create_experiment_dir = 'with_rdr/'
+create_experiment_dir = 'test/'
 if not os.path.exists(create_experiment_dir):
     os.mkdir(create_experiment_dir)
 

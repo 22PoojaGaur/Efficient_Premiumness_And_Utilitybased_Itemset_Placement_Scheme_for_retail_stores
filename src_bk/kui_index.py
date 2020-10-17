@@ -48,9 +48,11 @@ def _get_kui_idx_with_diversity(data, dranks, method):
         value -> drank value of itemset
 
     method -> string
-        'R', 'D', 'H' or 'DR'
+        'R', 'D' or 'H'
     '''
     kui = {}
+
+    TRAIN_TOP_REVENUE = {}
 
     # Initialize all levels for dict
     for i in range(1, K_FOR_KUI_IDX+1):
@@ -59,14 +61,15 @@ def _get_kui_idx_with_diversity(data, dranks, method):
     # Insert all itemsets in kui
     for itemset in data.keys():
         value = list([itemset]) + list(data[itemset]) + [data[itemset][0] * data[itemset][1]] + [dranks[itemset]]
-        
-        # # apply threshold for drip method
-        # if method == 'DR':
-        #     if value[-1] < KUI_DRIP_DRANK_THRESHOLD:
+        #----------- same as above--------------
+        # if method == 'DR' and len(itemset) != 1:
+        #     value = list([itemset]) + list(data[itemset]) + [(data[itemset][0] * data[itemset][1])] + [dranks[itemset]]
+        # if method == "R":
+        #     if value[-1] > 0.25:
         #         continue
-        #     if value[-2] < KUI_DRIP_REVENUE_THRESHOLD:
+        # if method == "D":
+        #     if value[-2] > 30:
         #         continue
-
         level = len(itemset)
         if level > K_FOR_KUI_IDX:
             continue
@@ -77,6 +80,7 @@ def _get_kui_idx_with_diversity(data, dranks, method):
             kui[level] = sorted(kui[level], key=lambda x: x[-2], reverse=True)
         elif method == 'D':
             kui[level] = sorted(kui[level], key=lambda x: x[-1], reverse=True)
+            #(-1*x[-1], x[-2]))
         elif method == 'P':
             kui[level] = sorted(kui[level], key=lambda x: x[-3], reverse=True)
         elif method == 'S':
@@ -84,8 +88,7 @@ def _get_kui_idx_with_diversity(data, dranks, method):
         elif method == 'DR':
             if (level == 1):
                 continue
-            kui[level] = sorted(kui[level], key=lambda x: x[-2]*x[-1], reverse=True)
-            # kui[level] = sorted(kui[level], key=lambda x: x[-2] + (RHO*x[-2]*x[-1]), reverse=True)
+            kui[level] = sorted(kui[level], key=lambda x: x[-2] + (RHO*x[-2]*x[-1]), reverse=True)
         if method == 'DIV':
             kui[level] = kui[level][0:2*LAMBDA]
         else:

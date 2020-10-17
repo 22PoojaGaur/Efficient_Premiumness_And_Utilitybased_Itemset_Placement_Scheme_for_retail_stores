@@ -20,26 +20,26 @@ def evaluate_new(slots, test_transactions):
     NUM_TEST_PATTERN_FOUND = 0
     TEST_DRANK_MEAN = 0
 
-    CUMULATIVE_PATTERN_REVENUE = {}
-    TRAIN_PATTERN_REVENUE = {}
+    # CUMULATIVE_PATTERN_REVENUE = {}
+    # TRAIN_PATTERN_REVENUE = {}
     NUM_2 = 0
     NUM_3 = 0
     NUM_4 = 0
 
-    cidx = 0
-    for (item, price, drank) in slots[0]:
-        cidx += 1
-        # TRAIN_PATTERN_REVENUE[cidx - 1][0] +
-        if cidx - 1 in TRAIN_PATTERN_REVENUE.keys():
-            TRAIN_PATTERN_REVENUE[cidx] = (
-                 price,
-                item
-            )
-        else:
-            TRAIN_PATTERN_REVENUE[cidx] = (
-                price,
-                item
-            )
+    # cidx = 0
+    # for (item, price, drank) in slots[0]:
+    #     cidx += 1
+    #     # TRAIN_PATTERN_REVENUE[cidx - 1][0] +
+    #     if cidx - 1 in TRAIN_PATTERN_REVENUE.keys():
+    #         TRAIN_PATTERN_REVENUE[cidx] = (
+    #              price,
+    #             item
+    #         )
+    #     else:
+    #         TRAIN_PATTERN_REVENUE[cidx] = (
+    #             price,
+    #             item
+    #         )
 
 
     for transaction in test_transactions:
@@ -53,27 +53,34 @@ def evaluate_new(slots, test_transactions):
             NUM_3 += 1
         if (len(itemset)) == 4:
             NUM_4 += 1
+        
+        all_slots = []
         for stype in range (0, len(slots)):
             for (item, price, drank) in slots[stype]:
                 # print (item)
                 # print (len (item))
+                # if item in all_slots:
+                #     print ('DUPLICATE found')
+                #     exit(1)
+                
+                # # all_slots.append(item)
                 
                 if tuple(item) == itemset:
                     prob_value = random.randint(0, 1000)
                     if stype == 2 and prob_value < 600:
                         TOTAL_REVENUE += price
                         NUM_TEST_PATTERN_FOUND += 1
-                        if NUM_TEST_PATTERN_FOUND-1 in CUMULATIVE_PATTERN_REVENUE.keys():
-                            CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND] = (
-                                (
-                                    CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND-1][0] + price,
-                                    itemset
-                                )
-                            )
-                        else:
-                            CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND] = (
-                                price,
-                                itemset)
+                        # if NUM_TEST_PATTERN_FOUND-1 in CUMULATIVE_PATTERN_REVENUE.keys():
+                        #     CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND] = (
+                        #         (
+                        #             CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND-1][0] + price,
+                        #             itemset
+                        #         )
+                        #     )
+                        # else:
+                        #     CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND] = (
+                        #         price,
+                        #         itemset)
                         TEST_DRANK_MEAN += drank
 
                     elif stype == 1 and prob_value < 800:
@@ -93,19 +100,21 @@ def evaluate_new(slots, test_transactions):
                     elif stype ==0 :
                         TOTAL_REVENUE += price
                         NUM_TEST_PATTERN_FOUND += 1
-                        if NUM_TEST_PATTERN_FOUND-1 in CUMULATIVE_PATTERN_REVENUE.keys():
-                                CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND] = (
-                                    (
-                                        CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND-1][0] + price,
-                                        itemset
-                                    )
-                                )
-                        else:
-                            CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND] = (
-                                price,
-                                itemset
-                            )
+                        # if NUM_TEST_PATTERN_FOUND-1 in CUMULATIVE_PATTERN_REVENUE.keys():
+                        #         CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND] = (
+                        #             (
+                        #                 CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND-1][0] + price,
+                        #                 itemset
+                        #             )
+                        #         )
+                        # else:
+                        #     CUMULATIVE_PATTERN_REVENUE[NUM_TEST_PATTERN_FOUND] = (
+                        #         price,
+                        #         itemset
+                        #     )
                         TEST_DRANK_MEAN += drank
+                    
+                    break
 
     print ('NUM 2')
     print (NUM_2)
@@ -137,72 +146,3 @@ def evaluate_new(slots, test_transactions):
     # pprint.pprint(TRAIN_PATTERN_REVENUE, width = 1)
 
     return (TOTAL_REVENUE, drank_mean, NUM_TEST_PATTERN_FOUND, NUM_TEST_TRANSACTION, diversification)
-
-# def evaluate(slots, test_transactions):
-#     f = open('evaluation.txt', 'w')
-#     TOTAL_REVENUE = 0
-#     NUM_TEST_TRANSACTION = 0
-#     NUM_TEST_PATTERN_FOUND = 0
-#     TEST_DRANK_MEAN = 0
-
-#     all_transactions = []
-#     prices = {}
-#     dranks = {}
-#     for stype in range (0, len(slots)):
-#         for (item, price, drank) in slots[stype]:
-#             all_transactions.append(set(item))
-#             prices[tuple(item)] = price
-#             dranks[tuple(item)] = drank
-
-#     NOT_IN_TEST = []
-
-#     for transaction in test_transactions:
-#         t = tuple(transaction)
-#         if len(t) > globals.K_FOR_KUI_IDX:
-#             continue
-#         NUM_TEST_TRANSACTION += 1
-#         if set(t) in all_transactions:
-#             try:
-#                 TOTAL_REVENUE += prices[t]
-#                 NUM_TEST_PATTERN_FOUND += 1
-#                 TEST_DRANK_MEAN += dranks[t]
-#             except KeyError:
-#                 continue
-
-#         else:
-#             NOT_IN_TEST.append(t)
-
-#         # for stype in range(0,len(slots)):
-#         #     for (item, price, drank) in slots[stype]:
-#         #         #print ('comparing ' + ' '.join(set(item)) + ' and ' + ' '.join(set(t)))
-#         #         if set(item) == set(t):
-#         #            # print ('MATCHED')
-#         #             TOTAL_REVENUE += price
-#         #             NUM_TEST_PATTERN_FOUND += 1
-#         #             TEST_DRANK_MEAN += drank
-#         #             break
-#                 #print ('NOT MATCHED')
-#     f.write('\nTOTAL REVENUE OF TEST PATTERNS PLACED ->\n')
-#     f.write(str(TOTAL_REVENUE))
-#     f.write('\n\nNUMBER OF TEST PATTERNS PLACED ->\n')
-#     f.write(str(NUM_TEST_PATTERN_FOUND))
-#     f.write('\n\nTOTAL NUMBER OF TEST PATTERNS ->\n')
-#     f.write(str(NUM_TEST_TRANSACTION))
-#     f.write('\n\nMEAN DRANK OF TESTING ->\n')
-#     f.write(str(TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND)))
-
-#     print('\nTOTAL REVENUE OF TEST PATTERNS PLACED ->\n')
-#     print(str(TOTAL_REVENUE))
-#     print('\n\nNUMBER OF TEST PATTERNS PLACED ->\n')
-#     print(str(NUM_TEST_PATTERN_FOUND))
-#     print('\n\nTOTAL NUMBER OF TEST PATTERNS ->\n')
-#     print(str(NUM_TEST_TRANSACTION))
-#     print('\n\nMEAN DRANK OF TESTING ->\n')
-#     print(str(TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND)))
-
-
-#     print ('NOT IN TESTING \n')
-#     # print (NOT_IN_TEST)
-
-#     return (TOTAL_REVENUE, TEST_DRANK_MEAN/float(NUM_TEST_PATTERN_FOUND),
-#                 NUM_TEST_PATTERN_FOUND, NUM_TEST_TRANSACTION, diversification)

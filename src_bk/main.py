@@ -33,16 +33,16 @@ CH_FNAME = args.with_ch_path
 def get_data():
     assert CH_FNAME is not None
     assert DATA_FNAME is not None
+
     if path.isfile('dataset.pkl') and path.isfile('test.pkl'):
         train = pkl.load(open('dataset.pkl', 'rb'))
         test = pkl.load(open('test.pkl', 'rb'))
-#       shorten the train dataset
-#       train_2 = {}
-#       for (k, v) in train.items():
-#           if len(k) > 1:
-#               train_2[k] = v   
-#       import itertools
-#       train = dict(itertools.islice(train_2.items(), 500))
+        # train_2 = {}
+        # for (k,v) in train.items():
+        #     if len(k) > 1:
+        #         train_2[k] = v
+        # import itertools 
+        # train = dict(itertools.islice(train_2.items(), 500))
     else:
         (train, test) = parse_data(DATA_FNAME)
         pkl.dump(train_data_dict, open('dataset.pkl', 'wb'))
@@ -78,7 +78,7 @@ if __name__ == '__main__':
         kui_DR = get_kui_index(train_data, dranks=dranks, method='DR')
         kui_idx = {
             'R': kui_R,
-            'DR': kui_DR
+            'H': kui_DR
         }
     else:
         kui_idx = get_kui_index(train_data, dranks=dranks, method=method)
@@ -143,3 +143,33 @@ if __name__ == '__main__':
         data.append(metrics[metric])
 
         pkl.dump(data, open(fname, 'wb'))
+    
+    # import pprint
+    # from itertools import islice
+    # from collections import OrderedDict
+
+    # filter_dict = {}
+    # frequency = {}
+    # for (key, value) in dict(sorted(
+    #     dranks.items(), key=lambda k: k[1], reverse=True)).items():
+
+    #     if len(key) == 3:
+    #         filter_dict[key] = value
+
+    #         if value not in frequency:
+    #             frequency[value] = 0
+    #         frequency[value] += 1
+
+    #--------------------------------------------
+    # klist = kui_idx[3][0:20]
+    # fdict = OrderedDict()
+    # freq = {}
+    # for key in klist:
+    #     itemset,price,frequency,nr,drank = key
+    #     fdict[itemset] = (dranks[itemset], nr)
+    #     if dranks[itemset] not in freq:
+    #         freq[dranks[itemset]] = 0
+    #     freq[dranks[itemset]] += 1
+    # pprint.pprint(fdict)
+    # pprint.pprint(freq)
+   # pprint.pprint(klist)

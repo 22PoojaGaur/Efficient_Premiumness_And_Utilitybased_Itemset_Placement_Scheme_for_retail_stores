@@ -3483,7 +3483,7 @@
 # plt.legend() 
 # plt.show()
 
-# #-------------------not completed--------------------------------
+# #---------------------------------------------------
 
 # import matplotlib.pyplot as plt
 
@@ -3492,28 +3492,32 @@
 
 # x_r =[0,2,4,8,12,16]
 # y_r = [
-# 200.45999999999992,
-# 200.45999999999992,
-# 200.45999999999992,
-# 200.45999999999992,
-# 200.45999999999992,
-# 200.45999999999992]
+# 221.1099999999999,
+# 221.1099999999999,
+# 221.1099999999999,
+# 221.1099999999999,
+# 221.1099999999999,
+# 221.1099999999999]
  
 
 
 # x_dr = [0,2,4,8,12,16]
-# y_dr = [
-#  202.9099999999999,
-#  180.95999999999998,
-#  185.31999999999996,
-#  178.49999999999997,
-#  179.23999999999995,
-#  176.26999999999995]
+# y_dr = [221.1099999999999,
+#  207.94999999999993,
+#  200.6499999999999,
+#  194.98999999999992,
+#  189.5999999999999,
+#  186.6899999999999]
 
 
 # x_d = [0,2,4,8,12,16]
 # y_d = [
-#  50.55, 50.55, 50.55, 50.55, 50.55, 50.55
+#  57.679999999999986,
+#  57.679999999999986,
+#  57.679999999999986,
+#  57.679999999999986,
+#  57.679999999999986,
+#  57.679999999999986
 # ]
 
 
@@ -3546,7 +3550,7 @@
 # plt.legend() 
 # plt.show()
 
-# #------------------------------------------------------
+# # #------------------------------------------------------
 
 # import matplotlib.pyplot as plt
 
@@ -3555,23 +3559,22 @@
 
 # x_r =[0,2,4,8,12,16]
 # y_r = [
-# 0.45454545454545453,
-# 0.45454545454545453,
-# 0.45454545454545453,
-# 0.45454545454545453,
-# 0.45454545454545453,
-# 0.45454545454545453]
+# 0.4792626728110599,
+# 0.4792626728110599,
+# 0.4792626728110599,
+# 0.4792626728110599,
+# 0.4792626728110599,
+# 0.4792626728110599]
  
 
 
 # x_dr = [0,2,4,8,12,16]
-# y_dr = [
-#  0.47029702970297027,
-#  0.6284530386740331,
-#  0.6461748633879781,
-#  0.6791666666666667,
-#  0.6896067415730337,
-#  0.71]
+# y_dr = [0.4792626728110599,
+#  0.6219806763285024,
+#  0.65625,
+#  0.6858974358974359,
+#  0.7023809523809523,
+#  0.7137096774193549]
 
 
 # x_d = [0,2,4,8,12,16]
@@ -3611,45 +3614,182 @@
 
 #---------------number patterns vs TR-------------------
 
-#import matplotlib.pyplot as plt
-#
-#from cycler import cycler
+# import matplotlib.pyplot as plt
+
+# from cycler import cycler
 
 
-#x_r =[10,20,30,40,50,60,70,80,90,100]
-#y_r = [24487,15507,12185,10995,10227,9615,9098,8635,8205,7595]
+# x_r =[10,20,30,40,50,60,70,80,90,100]
+# y_r = [24487,15507,12185,10995,10227,9615,9098,8635,8205,7595]
  
 
 
-#monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
-#                 cycler('linestyle', ['-', '-', '-', '-']))
+# monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
+#                  cycler('linestyle', ['-', '-', '-', '-']))
 
-#plt.rcParams['figure.figsize'] = (6, 4)
-## plt.rcParams['text.usetex'] = True
-#plt.rcParams['font.family'] = 'serif'
-#plt.rcParams['axes.labelsize'] = 'xx-large'
-#plt.rcParams['xtick.labelsize'] = 'large'
-#plt.rcParams['ytick.labelsize'] = 'large'
-#plt.rcParams['lines.markersize'] = 5
+# plt.rcParams['figure.figsize'] = (6, 4)
+# # plt.rcParams['text.usetex'] = True
+# plt.rcParams['font.family'] = 'serif'
+# plt.rcParams['axes.labelsize'] = 'xx-large'
+# plt.rcParams['xtick.labelsize'] = 'large'
+# plt.rcParams['ytick.labelsize'] = 'large'
+# plt.rcParams['lines.markersize'] = 5
 
-#plt.rcParams['axes.prop_cycle'] = monochrome
-#plt.rcParams['figure.autolayout'] = True
+# plt.rcParams['axes.prop_cycle'] = monochrome
+# plt.rcParams['figure.autolayout'] = True
 
-#plt.rcParams['lines.linewidth'] = 0.7
+# plt.rcParams['lines.linewidth'] = 0.7
 
-#plt.rcParams['legend.frameon'] = False
+# plt.rcParams['legend.frameon'] = False
 
-#plt.plot(x_r, y_r, label = "PRIP", marker="o", fillstyle='none')
-#plt.plot(x_rdr, y_rdr, label = "NR-DR", marker="|")
-#plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
-#plt.plot(x_d, y_d, label = "Diversity", marker="v")
+# plt.plot(x_r, y_r, label = "PRIP", marker="o", fillstyle='none')
+# #plt.plot(x_rdr, y_rdr, label = "NR-DR", marker="|")
+# #plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
+# #plt.plot(x_d, y_d, label = "Diversity", marker="v")
 
-#plt.xlabel('Top Revenue Patterns' )
-#plt.ylabel( 'Net Revenue')
-#plt.legend() 
-#plt.show()
+# plt.xlabel('Top Revenue Patterns' )
+# plt.ylabel( 'Net Revenue')
+# plt.legend() 
+# plt.show()
 
-#---------------------new----------------
+#---------------------d----------------
+
+
+# import matplotlib.pyplot as plt
+
+# from cycler import cycler
+
+
+# x_d = [10,20,30,40,50,60,70,80,90,100]
+# y_d = [22,42,54,60,67,73,78,81,85,89]
+
+
+# # x_d1 = [10,20,30,40,50,60,70,80,90,100]
+# # y_d1 = [22,64,118,178,245,318,396,477,562,651]
+
+ 
+
+
+# monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
+#                  cycler('linestyle', ['-', '-', '-', '-']))
+
+# plt.rcParams['figure.figsize'] = (6, 4)
+# # plt.rcParams['text.usetex'] = True
+# plt.rcParams['font.family'] = 'serif'
+# plt.rcParams['axes.labelsize'] = 'xx-large'
+# plt.rcParams['xtick.labelsize'] = 'large'
+# plt.rcParams['ytick.labelsize'] = 'large'
+# plt.rcParams['lines.markersize'] = 5
+
+# plt.rcParams['axes.prop_cycle'] = monochrome
+# plt.rcParams['figure.autolayout'] = True
+
+# plt.rcParams['lines.linewidth'] = 0.7
+
+# plt.rcParams['legend.frameon'] = False
+
+# #plt.plot(x_r, y_r, label = "PRIP", marker="o", fillstyle='none')
+# #plt.plot(x_rdr, y_rdr, label = "NR-DR", marker="|")
+# #plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
+# plt.plot(x_d, y_d, label = "Diversity", marker="v")
+# #plt.plot(x_d1, y_d1, label = "Diversity", marker="o")
+
+
+# plt.xlabel('Top Revenue Patterns' )
+# plt.ylabel( 'Net Revenue')
+# plt.legend() 
+# plt.show()
+
+
+#---------------number patterns vs TR-------------------
+
+# import matplotlib.pyplot as plt
+
+# from cycler import cycler
+
+
+# x_r =[20,40,60,80,100]
+# y_r = [26728,12449,8974,6951,4688]
+ 
+# x_dr =[20,40,60,80,100]
+# y_dr = [21626,13618,8236,6823,5306]
+
+# x_d =[20,40,60,80,100]
+# y_d = [82,168,238,298,374]
+
+# monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
+#                  cycler('linestyle', ['-', '-', '-', '-']))
+
+# plt.rcParams['figure.figsize'] = (6, 4)
+# # plt.rcParams['text.usetex'] = True
+# plt.rcParams['font.family'] = 'serif'
+# plt.rcParams['axes.labelsize'] = 'xx-large'
+# plt.rcParams['xtick.labelsize'] = 'large'
+# plt.rcParams['ytick.labelsize'] = 'large'
+# plt.rcParams['lines.markersize'] = 5
+
+# plt.rcParams['axes.prop_cycle'] = monochrome
+# plt.rcParams['figure.autolayout'] = True
+
+# plt.rcParams['lines.linewidth'] = 0.7
+
+# plt.rcParams['legend.frameon'] = False
+
+# plt.plot(x_r, y_r, label = "PRIP", marker="o", fillstyle='none')
+# #plt.plot(x_rdr, y_rdr, label = "NR-DR", marker="|")
+# plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
+# plt.plot(x_d, y_d, label = "Diversity", marker="v")
+
+# plt.xlabel('Top Revenue Patterns' )
+# plt.ylabel( 'Net Revenue')
+# plt.legend() 
+# plt.show()
+
+#---------------number patterns vs drank-mean(not completed)-------------------
+
+# import matplotlib.pyplot as plt
+
+# from cycler import cycler
+
+
+# x_r =[20,40,60,80,100]
+# y_r = [26728,12449,8974,6951,4688]
+ 
+# x_dr =[20,40,60,80,100]
+# y_dr = [21626,13618,8236,6823,5306]
+
+# x_d =[20,40,60,80,100]
+# y_d = [82,168,238,298,374]
+
+# monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
+#                  cycler('linestyle', ['-', '-', '-', '-']))
+
+# plt.rcParams['figure.figsize'] = (6, 4)
+# # plt.rcParams['text.usetex'] = True
+# plt.rcParams['font.family'] = 'serif'
+# plt.rcParams['axes.labelsize'] = 'xx-large'
+# plt.rcParams['xtick.labelsize'] = 'large'
+# plt.rcParams['ytick.labelsize'] = 'large'
+# plt.rcParams['lines.markersize'] = 5
+
+# plt.rcParams['axes.prop_cycle'] = monochrome
+# plt.rcParams['figure.autolayout'] = True
+
+# plt.rcParams['lines.linewidth'] = 0.7
+
+# plt.rcParams['legend.frameon'] = False
+
+# plt.plot(x_r, y_r, label = "PRIP", marker="o", fillstyle='none')
+# #plt.plot(x_rdr, y_rdr, label = "NR-DR", marker="|")
+# plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
+# plt.plot(x_d, y_d, label = "Diversity", marker="v")
+
+# plt.xlabel('Top Revenue Patterns' )
+# plt.ylabel( 'Drank')
+# plt.legend() 
+# plt.show()
+
+#--------------------------with combination approach-------------
 
 # import matplotlib.pyplot as plt
 
@@ -3677,22 +3817,22 @@
 
 
 # x_dr = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-# y_dr = [41.75,
-#  54.74,
-#  76.87000000000003,
-#  99.71000000000001,
-#  117.02,
-#  134.85999999999996,
-#  149.4699999999999]
+# y_dr = [78.58999999999999,
+#  98.83999999999999,
+#  129.93000000000006,
+#  178.22999999999996,
+#  198.7999999999999,
+#  204.09999999999988,
+#  208.4999999999999]
 
 # x_rdr = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-# y_rdr = [53.06,
-#  83.56,
-#  120.78999999999999,
-#  162.80999999999986,
-#  192.27999999999986,
-#  222.89999999999992,
-#  243.9599999999999]
+# y_rdr = [83.32999999999998,
+#  106.60999999999999,
+#  134.56000000000003,
+#  197.3199999999999,
+#  227.8699999999999,
+#  246.92999999999986,
+#  254.29999999999987]
 
 
 # monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
@@ -3718,12 +3858,90 @@
 # plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
 # plt.plot(x_rdr, y_rdr, label = "HIP", marker="|")
 
-# plt.xlabel('Number of Slots' )
+# plt.xlabel('Ts' )
 # plt.ylabel( 'TR for alpha 5')
 # plt.legend() 
 # plt.show()
 
-#---------------------correct one----------------------
+# #-----------------------------------
+
+# import matplotlib.pyplot as plt
+
+# from cycler import cycler
+
+
+# x_r =[1000, 2000, 4000, 8000, 12000, 16000, 20000]
+# y_r = [
+# 0.40384615384615385,
+#  0.4649532710280374,
+#  0.45598591549295775,
+#  0.45652173913043476,
+#  0.4792626728110599,
+#  0.48333333333333334,
+#  0.48333333333333334]
+ 
+
+
+# x_dr = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
+# y_dr = [
+# 0.5733333333333334,
+#  0.5885416666666666,
+#  0.622093023255814,
+#  0.6511299435028248,
+#  0.6704545454545454,
+#  0.6650246305418719,
+#  0.6614077669902912]
+
+
+
+# x_d = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
+# y_d = [
+# 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+# ]
+
+# x_rdr = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
+# y_rdr = [0.4675324675324675,
+#  0.5145631067961165,
+#  0.5208333333333334,
+#  0.5194300518134715,
+#  0.5588888888888889,
+#  0.5571428571428572,
+#  0.5515873015873016
+
+# ]
+
+
+
+# monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
+#                  cycler('linestyle', ['-', '-', '-', '-']))
+
+# plt.rcParams['figure.figsize'] = (6, 4)
+# # plt.rcParams['text.usetex'] = True
+# plt.rcParams['font.family'] = 'serif'
+# plt.rcParams['axes.labelsize'] = 'xx-large'
+# plt.rcParams['xtick.labelsize'] = 'large'
+# plt.rcParams['ytick.labelsize'] = 'large'
+# plt.rcParams['lines.markersize'] = 5
+
+# plt.rcParams['axes.prop_cycle'] = monochrome
+# plt.rcParams['figure.autolayout'] = True
+
+# plt.rcParams['lines.linewidth'] = 0.7
+
+# plt.rcParams['legend.frameon'] = False
+
+# plt.plot(x_r, y_r, label = "PRIP", marker="o", fillstyle='none')
+
+# plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
+# plt.plot(x_d, y_d, label = "DIP", marker="v")
+# plt.plot(x_rdr, y_rdr, label = "HIP", marker="|")
+
+# plt.xlabel('Ts' )
+# plt.ylabel( 'Drank-mean for alpha 5')
+# plt.legend() 
+# plt.show()
+
+#------------------------------------------------
 
 import matplotlib.pyplot as plt
 
@@ -3736,8 +3954,8 @@ y_r = [82.66,
  142.48000000000005,
  186.73999999999998,
  221.1099999999999,
- 255.03999999999985,
- 274.4399999999998]
+ 244.93999999999986,
+ 244.93999999999986]
  
 
 x_d = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
@@ -3745,47 +3963,31 @@ y_d = [2.69,
  4.109999999999999,
  22.930000000000003,
  50.169999999999995,
- 74.46999999999998,
- 87.44,
- 99.33]
+ 57.679999999999986,
+ 57.679999999999986,
+ 57.679999999999986]
 
 
 x_dr = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-y_dr = [60.57999999999998,
- 80.90999999999998,
- 113.58000000000001,
- 155.94,
- 181.21999999999997,
- 208.36999999999986,
- 220.20999999999987]
-
+y_dr = [78.58999999999999,
+ 98.83999999999999,
+ 129.93000000000006,
+ 178.22999999999996,
+ 198.7999999999999,
+ 204.09999999999988,
+ 208.4999999999999]
 
 x_rdr = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-y_rdr = [81.42999999999999,
- 105.84999999999998,
- 132.95000000000005,
- 177.75999999999996,
- 217.07999999999984,
- 243.9099999999998,
- 268.5999999999998]
+y_rdr = [83.32999999999998,
+ 106.60999999999999,
+ 134.56000000000003,
+ 197.3199999999999,
+ 227.8699999999999,
+ 246.92999999999986,
+ 254.29999999999987]
 
 x_rdr1 = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-y_rdr1 = [81.42999999999999,
- 105.84999999999998,
- 132.14000000000004,
- 175.6,
- 211.35999999999984,
- 230.65999999999983,
- 256.4099999999998]
-
-x_rdr2 = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-y_rdr2 = [81.42999999999999,
- 106.82999999999998,
- 138.22000000000003,
- 182.3299999999999,
- 218.71999999999989,
- 252.47999999999985,
- 271.8499999999998]
+y_rdr1 = []
 
 
 monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
@@ -3809,242 +4011,10 @@ plt.rcParams['legend.frameon'] = False
 plt.plot(x_r, y_r, label = "PRIP", marker="o", fillstyle='none')
 plt.plot(x_d, y_d, label = "DIP", marker="v")
 plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
-plt.plot(x_rdr, y_rdr, label = "HIP-0.3", marker="|")
-plt.plot(x_rdr1, y_rdr1, label = "HIP-0.2", marker="s")
-plt.plot(x_rdr2, y_rdr2, label = "HIP-0.4", marker=".")
+plt.plot(x_rdr, y_rdr, label = "HIP-prip", marker="|")
+plt.plot(x_rdr1, y_rdr1, label = "HIP-drip", marker="O")
 
-
-plt.xlabel('Ts' )
-plt.ylabel( 'TR')
+plt.xlabel('Ts with Top Revenue Patterns' )
+plt.ylabel( 'TR for alpha 5')
 plt.legend() 
 plt.show()
-
-#-----------------------------------
-
-import matplotlib.pyplot as plt
-
-from cycler import cycler
-
-
-x_r =[1000, 2000, 4000, 8000, 12000, 16000, 20000]
-y_r = [0.40384615384615385,
- 0.4649532710280374,
- 0.45598591549295775,
- 0.45652173913043476,
- 0.4792626728110599,
- 0.498,
- 0.5073529411764706]
- 
-
-x_d = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-y_d = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
-
-
-x_dr = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-y_dr = [0.6779661016949152,
- 0.6829268292682927,
- 0.7280701754385965,
- 0.759493670886076,
- 0.7703804347826086,
- 0.775,
- 0.7748868778280543]
-
-
-x_rdr = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-y_rdr = [0.6,
- 0.6242718446601942,
- 0.6515267175572519,
- 0.6689189189189189,
- 0.67,
- 0.6753968253968254,
- 0.6996376811594203]
-
-
-x_rdr1 = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-y_rdr1 = [0.62,
- 0.6442718446601942,
- 0.671923076923077,
- 0.697027027027027,
- 0.6944444444444444,
- 0.6956972111553785,
- 0.72]
-
-x_rdr2 = [1000, 2000, 4000, 8000, 12000, 16000, 20000]
-y_rdr2 = [0.55,
- 0.5740384615384616,
- 0.5824427480916031,
- 0.5770618556701031,
- 0.6091517857142857,
- 0.6219844357976653,
- 0.6109318996415771]
-
-
-monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
-                 cycler('linestyle', ['-', '-', '-', '-']))
-
-plt.rcParams['figure.figsize'] = (6, 4)
-# plt.rcParams['text.usetex'] = True
-plt.rcParams['font.family'] = 'serif'
-plt.rcParams['axes.labelsize'] = 'xx-large'
-plt.rcParams['xtick.labelsize'] = 'large'
-plt.rcParams['ytick.labelsize'] = 'large'
-plt.rcParams['lines.markersize'] = 5
-
-plt.rcParams['axes.prop_cycle'] = monochrome
-plt.rcParams['figure.autolayout'] = True
-
-plt.rcParams['lines.linewidth'] = 0.7
-
-plt.rcParams['legend.frameon'] = False
-
-plt.plot(x_r, y_r, label = "PRIP", marker="o", fillstyle='none')
-plt.plot(x_d, y_d, label = "DIP", marker="v")
-plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
-plt.plot(x_rdr, y_rdr, label = "HIP-0.3", marker="|")
-plt.plot(x_rdr1, y_rdr1, label = "HIP-0.2", marker="s")
-plt.plot(x_rdr2, y_rdr2, label = "HIP-0.4", marker=".")
-
-plt.xlabel('Ts' )
-plt.ylabel( 'DRank')
-plt.legend() 
-plt.show()
-
-# #-----------------------------------------
-
-# import matplotlib.pyplot as plt
-
-# from cycler import cycler
-
-
-# x_r =[0.0,0.2,0.4,0.6,0.8,1.0]
-# y_r = [221.1099999999999,
-# 221.1099999999999,
-# 221.1099999999999,
-# 221.1099999999999,
-# 221.1099999999999,
-# 221.1099999999999]
- 
-
-# x_d = [0.0,0.2,0.4,0.6,0.8,1.0]
-# y_d = [74.46999999999998,
-# 74.46999999999998,
-# 74.46999999999998,
-# 74.46999999999998,
-# 74.46999999999998,
-# 74.46999999999998]
-
-
-# x_dr = [0.0,0.2,0.4,0.6,0.8,1.0]
-# y_dr = [181.21999999999997,
-# 181.21999999999997,
-# 181.21999999999997,
-# 181.21999999999997,
-# 181.21999999999997,
-# 181.21999999999997]
-
-
-# x_rdr = [0.0,0.2,0.4,0.6,0.8,1.0]
-# y_rdr = [221.1099999999999,
-#  221.1099999999999,
-#  221.10,
-#  216.71999999999989,
-#  200.35999999999984,
-#  181.21999999999997]
-
-
-# monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
-#                  cycler('linestyle', ['-', '-', '-', '-']))
-
-# plt.rcParams['figure.figsize'] = (6, 4)
-# # plt.rcParams['text.usetex'] = True
-# plt.rcParams['font.family'] = 'serif'
-# plt.rcParams['axes.labelsize'] = 'xx-large'
-# plt.rcParams['xtick.labelsize'] = 'large'
-# plt.rcParams['ytick.labelsize'] = 'large'
-# plt.rcParams['lines.markersize'] = 5
-
-# plt.rcParams['axes.prop_cycle'] = monochrome
-# plt.rcParams['figure.autolayout'] = True
-
-# plt.rcParams['lines.linewidth'] = 0.7
-
-# plt.rcParams['legend.frameon'] = False
-
-# plt.plot(x_r, y_r, label = "PRIP", marker="o", fillstyle='none')
-# plt.plot(x_d, y_d, label = "DIP", marker="v")
-# plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
-# plt.plot(x_rdr, y_rdr, label = "HIP", marker="|")
-
-# plt.xlabel('R-Ratio' )
-# plt.ylabel( 'TR for alpha 5')
-# plt.legend() 
-# plt.show()
-
-# # #-----------------------------------
-
-# import matplotlib.pyplot as plt
-
-# from cycler import cycler
-
-
-# x_r =[0.0,0.2,0.4,0.6,0.8,1.0]
-# y_r = [0.4792626728110599,
-# 0.4792626728110599,
-# 0.4792626728110599,
-# 0.4792626728110599,
-# 0.4792626728110599,
-# 0.4792626728110599]
- 
-
-# x_d = [0.0,0.2,0.4,0.6,0.8,1.0]
-# y_d = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
-
-
-# x_dr = [0.0,0.2,0.4,0.6,0.8,1.0]
-# y_dr = [0.7703804347826086,
-# 0.7703804347826086,
-# 0.7703804347826086,
-# 0.7703804347826086,
-# 0.7703804347826086,
-# 0.7703804347826086]
-
-
-
-# x_rdr = [0.0,0.2,0.4,0.6,0.8,1.0]
-# y_rdr = [0.4792626728110599,
-#  0.4792626728110599,
-#  0.5045045045045045,
-#  0.5591517857142857,
-#  0.6244444444444444,
-#  0.7703804347826086]
-
-
-# monochrome = (cycler('color', ['k']) * cycler('marker', ['', '.']) *
-#                  cycler('linestyle', ['-', '-', '-', '-']))
-
-# plt.rcParams['figure.figsize'] = (6, 4)
-# # plt.rcParams['text.usetex'] = True
-# plt.rcParams['font.family'] = 'serif'
-# plt.rcParams['axes.labelsize'] = 'xx-large'
-# plt.rcParams['xtick.labelsize'] = 'large'
-# plt.rcParams['ytick.labelsize'] = 'large'
-# plt.rcParams['lines.markersize'] = 5
-
-# plt.rcParams['axes.prop_cycle'] = monochrome
-# plt.rcParams['figure.autolayout'] = True
-
-# plt.rcParams['lines.linewidth'] = 0.7
-
-# plt.rcParams['legend.frameon'] = False
-
-# plt.plot(x_r, y_r, label = "PRIP", marker="o", fillstyle='none')
-# plt.plot(x_d, y_d, label = "DIP", marker="v")
-# plt.plot(x_dr, y_dr, label = "DRIP", marker="*", fillstyle='none')
-# plt.plot(x_rdr, y_rdr, label = "HIP", marker="|")
-
-# plt.xlabel('R-Ratio' )
-# plt.ylabel( 'DRank for alpha 5')
-# plt.legend() 
-# plt.show()
-
-#--------------------------------------
